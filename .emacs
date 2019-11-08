@@ -254,7 +254,7 @@ Version 2017-11-01"
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
   :init-value t
-  :lighter " my-keys")
+  :lighter " my-keys-minor-mode")
 
 (my-keys-minor-mode 1)
 
@@ -286,20 +286,20 @@ Called via the `after-load-functions' special hook."
 
 ;; Colors
 (set-face-attribute 'tabbar-default nil
-        :background "gray20" :foreground
-        "gray60" :distant-foreground "gray50"
-        :family "DejaVu Sans Mono" :box nil)
+                    :background "gray20" :foreground
+                    "gray60" :distant-foreground "gray50"
+                    :family "DejaVu Sans Mono" :box nil)
 (set-face-attribute 'tabbar-unselected nil
-        :background "gray80" :foreground "black" :box nil)
+                    :background "gray80" :foreground "black" :box nil)
 (set-face-attribute 'tabbar-modified nil
-        :foreground "red4" :box nil
-        :inherit 'tabbar-unselected)
+                    :foreground "red4" :box nil
+                    :inherit 'tabbar-unselected)
 (set-face-attribute 'tabbar-selected nil
-        :background "#4090c0" :foreground "white" :box nil)
+                    :background "#4090c0" :foreground "white" :box nil)
 (set-face-attribute 'tabbar-selected-modified nil
-        :inherit 'tabbar-selected :foreground "GoldenRod2" :box nil)
+                    :inherit 'tabbar-selected :foreground "GoldenRod2" :box nil)
 (set-face-attribute 'tabbar-button nil
-        :box nil)
+                    :box nil)
 
 (add-to-list 'load-path "~/.emacs.d/powerline")
 ;; Use Powerline to make tabs look nicer
