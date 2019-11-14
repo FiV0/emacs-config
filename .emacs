@@ -124,9 +124,9 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key "\t" 'company-complete-common-or-cycle)
 (company-tng-configure-default)
-;; (add-to-list 'company-frontends 'company-tng-frontend)
 ;; start completions immediately
 (setq company-idle-delay 0)
+(setq company-selection-wrap-around t)
 ;; company quickhelp
 (company-quickhelp-mode)
 
