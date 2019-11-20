@@ -18,23 +18,18 @@
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(company-backends
    (quote
-    (company-slime company-bbdb company-eclim company-semantic
-                   company-clang company-xcode company-cmake company-capf company-files
+    (company-slime company-bbdb company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
                    (company-dabbrev-code company-gtags company-etags company-keywords)
                    company-oddmuse company-dabbrev)))
  '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-    ("837f2d1e6038d05f29bbcc0dc39dbbc51e5c9a079e8ecd3b6ef09fc0b149ceb1"
-     "2925ed246fb757da0e8784ecf03b9523bccd8b7996464e587b081037e0e98001"
-     "a21be90bf7f37922e647eb3c5b8fbaa250b3b0db9daee4dbf510863a4f9006a4" default)))
+    ("837f2d1e6038d05f29bbcc0dc39dbbc51e5c9a079e8ecd3b6ef09fc0b149ceb1" "2925ed246fb757da0e8784ecf03b9523bccd8b7996464e587b081037e0e98001" "a21be90bf7f37922e647eb3c5b8fbaa250b3b0db9daee4dbf510863a4f9006a4" default)))
  '(elpy-syntax-check-command "flake8")
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (elpy lispyville markdown-mode company-quickhelp slime-company
-          rainbow-delimiters evil-nerd-commenter evil-leader
-          use-package highlight-parentheses cider bind-key tabbar
-          paredit company slime evil-surround)))
+    (kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package highlight-parentheses cider bind-key tabbar paredit company slime evil-surround)))
  '(tabbar-background-color "gray20")
  '(tabbar-separator (quote (0.5)))
  '(tabbar-use-images nil))
@@ -58,7 +53,7 @@
 
 ;; fullscreen mode on startup
 (custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
 ;; Highlighting of FIXME and TODO
 ;; (require 'fic-mode)
@@ -129,6 +124,14 @@
 (setq company-selection-wrap-around t)
 ;; company quickhelp
 (company-quickhelp-mode)
+;; for lsp-mode
+;; (require 'company-lsp)
+;; (push 'company-lsp company-backends)
+
+;;java stuff
+(require 'lsp-java)
+(add-hook 'java-mode-hook #'lsp)
+;; kotlin
 
 ;; paredit hooks
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
