@@ -29,7 +29,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package highlight-parentheses cider bind-key tabbar paredit company slime evil-surround)))
+    (evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package highlight-parentheses cider bind-key tabbar paredit company slime evil-surround)))
  '(tabbar-background-color "gray20")
  '(tabbar-separator (quote (0.5)))
  '(tabbar-use-images nil))
@@ -52,8 +52,7 @@
   (global-display-line-numbers-mode))
 
 ;; fullscreen mode on startup
-(custom-set-variables
-  '(initial-frame-alist (quote ((fullscreen . maximized)))))
+
 
 ;; Highlighting of FIXME and TODO
 ;; (require 'fic-mode)
@@ -71,11 +70,14 @@
 
 ;; Evil mode
 (setq evil-want-C-u-scroll t)
-(add-to-list 'load-path "~/.emacs.d/evil")
+;; (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
 ;;allow tabs in evil mode
 (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 (evil-mode 1)
+
+;;magit
+(require 'evil-magit)
 
 ;; leader mode
 (global-evil-leader-mode)

@@ -6,11 +6,12 @@
 
 ; list the packages you want
 (setq package-list
-      '(company-lsp lsp-mode elpy lispyville markdown-mode
-                    company-quickhelp slime-company rainbow-delimiters
-                    evil-nerd-commenter evil-leader use-package
-                    highlight-parentheses cider bind-key tabbar
-                    paredit company slime evil-surround))
+      '(evil-magit evil magit kotlin-mode dap-mode lsp-java
+                   company-lsp lsp-mode elpy lispyville markdown-mode
+                   company-quickhelp slime-company rainbow-delimiters
+                   evil-nerd-commenter evil-leader use-package
+                   highlight-parentheses cider bind-key tabbar
+                   paredit company slime evil-surround))
 
 ; activate all the packages
 (package-initialize)
