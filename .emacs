@@ -116,6 +116,9 @@
 
 ;; cider stuff
 (setq cider-prompt-for-symbol nil)
+(setq cider-repl-wrap-history t)
+(setq cider-repl-history-size 1000)
+(setq cider-repl-history-file "~/.cider-repl-history")
 
 ;; company-mode in all buffers
 (add-hook 'after-init-hook 'global-company-mode)
