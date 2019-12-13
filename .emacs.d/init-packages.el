@@ -6,7 +6,7 @@
 
 ; list the packages you want
 (setq package-list
-      '(evil-magit evil magit kotlin-mode dap-mode lsp-java
+      '(powerline evil-magit evil magit kotlin-mode dap-mode lsp-java
                    company-lsp lsp-mode elpy lispyville markdown-mode
                    company-quickhelp slime-company rainbow-delimiters
                    evil-nerd-commenter evil-leader use-package
