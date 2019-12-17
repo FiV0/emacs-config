@@ -74,8 +74,10 @@
 
 ;; Evil mode
 (setq evil-want-C-u-scroll t)
-;; (add-to-list 'load-path "~/.emacs.d/evil")
+;; (setq evil-want-keybinding nil)
 (require 'evil)
+;; cider evil interpolation
+;; (evil-collection-init 'cider)
 ;;allow tabs in evil mode
 (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 (evil-mode 1)
@@ -213,8 +215,17 @@ Version 2017-11-01"
   (define-key evil-normal-state-map (kbd "M-.") nil)
   (setq cider-repl-display-help-banner nil))
 
+;; cider evil interpolation
 (add-hook 'clojure-mode-hook          #'cider-override-evil-mode)
 (add-hook 'cider-repl-mode-hook       #'cider-override-evil-mode)
+
+;; cider + evil interpolation
+(defun my-cider-debug-setup ()
+  (evil-make-overriding-map cider--debug-mode-map 'normal)
+  (evil-normalize-keymaps))
+(add-hook 'cider--debug-mode-hook 'my-cider-debug-setup)
+;; (evil-make-intercept-map cider-debug-mode-map 'normal)
+;; (evil-normalize-keymaps)
 
 ;; elpy stuff
 (package-initialize)
