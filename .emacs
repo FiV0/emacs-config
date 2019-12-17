@@ -29,7 +29,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
+    (aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
  '(tabbar-background-color "gray20")
  '(tabbar-separator (quote (0.5)))
  '(tabbar-use-images nil))
@@ -164,6 +164,8 @@
 (add-hook 'clojure-mode-hook          #'rainbow-delimiters-mode)
 (add-hook 'cider-repl-mode-hook       #'rainbow-delimiters-mode)
 (add-hook 'slime-repl-mode-hook       #'rainbow-delimiters-mode)
+;; aggressive indent
+(global-aggressive-indent-mode 1)
 
 ;; make normal mode the default
 (setq evil-emacs-state-modes nil)
