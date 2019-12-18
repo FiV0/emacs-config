@@ -76,8 +76,6 @@
 (setq evil-want-C-u-scroll t)
 ;; (setq evil-want-keybinding nil)
 (require 'evil)
-;; cider evil interpolation
-;; (evil-collection-init 'cider)
 ;;allow tabs in evil mode
 (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 (evil-mode 1)
@@ -210,22 +208,22 @@ Version 2017-11-01"
 (setq cider-repl-history-size 1000)
 (setq cider-repl-history-file "~/.cider-repl-history")
 
-;; cider overwrite evil
-(defun cider-override-evil-mode ()
+(defun my-cider-mode-override ()
+  ;; cider overwrite evil
   (define-key evil-normal-state-map (kbd "M-.") nil)
+  ;; custom debug command
+  (define-key cider-mode-map (kbd "C-c C-d") #'cider-debug-defun-at-point)
   (setq cider-repl-display-help-banner nil))
 
 ;; cider evil interpolation
-(add-hook 'clojure-mode-hook          #'cider-override-evil-mode)
-(add-hook 'cider-repl-mode-hook       #'cider-override-evil-mode)
+;; (add-hook 'clojure-mode-hook          #'my-cider-mode-override)
+(add-hook 'cider-repl-mode-hook       #'my-cider-mode-override)
 
 ;; cider + evil interpolation
 (defun my-cider-debug-setup ()
   (evil-make-overriding-map cider--debug-mode-map 'normal)
   (evil-normalize-keymaps))
 (add-hook 'cider--debug-mode-hook 'my-cider-debug-setup)
-;; (evil-make-intercept-map cider-debug-mode-map 'normal)
-;; (evil-normalize-keymaps)
 
 ;; elpy stuff
 (package-initialize)
