@@ -98,7 +98,8 @@
   "cv" 'evilnc-toggle-invert-comment-line-by-line
   "."  'evilnc-copy-and-comment-operator
   "\\" 'evilnc-comment-operator ; if you prefer backslash key
-  "q" 'cider-popup-buffer-quit-function)
+  ;; to be consistent with slime
+  "a" 'cider-popup-buffer-quit-function)
 
 ;; evil-surround
 (use-package evil-surround
@@ -166,6 +167,12 @@
 (add-hook 'slime-repl-mode-hook       #'rainbow-delimiters-mode)
 ;; aggressive indent
 (global-aggressive-indent-mode 1)
+;; don't indent comments in SLIME repl
+(add-to-list 'aggressive-indent-excluded-modes
+             'slime-repl-mode)
+;; (add-to-list 'aggressive-indent-dont-indent-if  
+;;              '(and (derived-mode-p 'slime-repl-mode)
+;;                    (looking-back "; *")))
 
 ;; make normal mode the default
 (setq evil-emacs-state-modes nil)
@@ -193,7 +200,9 @@ Version 2017-11-01"
 (setq slime-company-completion 'fuzzy)
 ;; avoid slime-company overriding the above grouped backends
 ;; the slime-company contrib pushs slime-company as single backend to company-backends
-;;(defun slime-avoid-override () (pop company-backends) (push '(company-slime company-dabbrev) company-backends))
+;; (defun slime-avoid-override ()
+;;   (pop company-backends)
+;;   (push '(company-slime company-dabbrev) company-backends))
 ;;(add-hook 'slime-connected-hook 'slime-avoid-override)
 
 (defun sldb-leader-setup ()
