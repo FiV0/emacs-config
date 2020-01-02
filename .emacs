@@ -169,9 +169,11 @@
 (add-hook 'slime-repl-mode-hook       #'rainbow-delimiters-mode)
 ;; aggressive indent
 (global-aggressive-indent-mode 1)
-;; don't indent comments in SLIME repl
+;; don't indent comments in SLIME repl and cider-repl
 (add-to-list 'aggressive-indent-excluded-modes
              'slime-repl-mode)
+(add-to-list 'aggressive-indent-excluded-modes
+             'cider-repl-mode)
 ;; (add-to-list 'aggressive-indent-dont-indent-if  
 ;;              '(and (derived-mode-p 'slime-repl-mode)
 ;;                    (looking-back "; *")))
