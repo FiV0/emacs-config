@@ -220,6 +220,13 @@ Version 2017-11-01"
 (setq cider-repl-wrap-history t)
 (setq cider-repl-history-size 1000)
 (setq cider-repl-history-file "~/.cider-repl-history")
+;; (setq cider-preferred-build-tool 'lein)
+
+(defun my-cider-jack-in ()
+  (interactive)
+  (cider-jack-in-clj '(4)))
+(add-hook 'clojure-mode-hook
+          (lambda () (local-set-key (kbd "C-c C-j") #'my-cider-jack-in)))
 
 (defun my-cider-mode-override ()
   ;; cider overwrite evil
