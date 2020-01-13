@@ -220,6 +220,7 @@ Version 2017-11-01"
 (setq cider-repl-wrap-history t)
 (setq cider-repl-history-size 1000)
 (setq cider-repl-history-file "~/.cider-repl-history")
+(setq cider-auto-jump-to-error 'errors-only)
 ;; (setq cider-preferred-build-tool 'lein)
 
 (defun my-cider-jack-in ()
