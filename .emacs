@@ -30,7 +30,12 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
+    (camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
+ ;; '(safe-local-variable-values
+ ;;   (quote
+ ;;    ((cider-shadow-cljs-default-options . "app")
+ ;;     (cider-default-cljs-repl . shadow))
+ ;;    ))
  '(show-paren-mode t)
  '(tabbar-background-color "gray20")
  '(tabbar-separator (quote (0.5)))
@@ -44,6 +49,8 @@
 
 ;; general EMACS stuff
 (require 'use-package)
+(setq split-height-threshold nil)
+(setq split-width-threshold nil)
 
 ;; save auto-save and backup files somewhere else
 (setq backup-directory-alist
