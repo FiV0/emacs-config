@@ -49,8 +49,9 @@
 
 ;; general EMACS stuff
 (require 'use-package)
+(setq split-width-threshold 200)
 (setq split-height-threshold nil)
-(setq split-width-threshold nil)
+(setq inhibit-splash-screen t)
 
 ;; save auto-save and backup files somewhere else
 (setq backup-directory-alist
@@ -181,7 +182,7 @@
              'slime-repl-mode)
 (add-to-list 'aggressive-indent-excluded-modes
              'cider-repl-mode)
-;; (add-to-list 'aggressive-indent-dont-indent-if  
+;; (add-to-list 'aggressive-indent-dont-indent-if
 ;;              '(and (derived-mode-p 'slime-repl-mode)
 ;;                    (looking-back "; *")))
 
