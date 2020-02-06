@@ -52,6 +52,7 @@
 (setq split-width-threshold 200)
 (setq split-height-threshold nil)
 (setq inhibit-splash-screen t)
+;; (setq enable-dir-local-variables t)
 
 ;; save auto-save and backup files somewhere else
 (setq backup-directory-alist
@@ -253,6 +254,10 @@ Version 2017-11-01"
   (evil-make-overriding-map cider--debug-mode-map 'normal)
   (evil-normalize-keymaps))
 (add-hook 'cider--debug-mode-hook 'my-cider-debug-setup)
+
+;; cider cljs safe .dir-locals
+(add-to-list 'safe-local-variable-values '(cider-default-cljs-repl . shadow))
+(add-to-list 'safe-local-variable-values '(cider-shadow-default-options . ":app"))
 
 ;; elpy stuff
 (package-initialize)
