@@ -52,6 +52,7 @@
 (setq split-width-threshold 200)
 (setq split-height-threshold nil)
 (setq inhibit-splash-screen t)
+(add-hook 'write-file-hooks 'delete-trailing-whitespace)
 ;; (setq enable-dir-local-variables t)
 
 ;; save auto-save and backup files somewhere else
