@@ -260,6 +260,10 @@ Version 2017-11-01"
 (add-to-list 'safe-local-variable-values '(cider-default-cljs-repl . shadow))
 (add-to-list 'safe-local-variable-values '(cider-shadow-default-options . ":app"))
 
+;; load CIDER from its source code
+;; (add-to-list 'load-path "~/Code/Clojure/cider/")
+;; (load "cider-autoloads" t t)
+
 ;; elpy stuff
 (package-initialize)
 (elpy-enable)
