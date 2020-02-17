@@ -272,6 +272,8 @@ Version 2017-11-01"
     (define-key map (kbd "<M-right>") 'tabbar-forward-tab)
     (define-key map (kbd "M-h") 'tabbar-backward-group)
     (define-key map (kbd "M-l") 'tabbar-forward-group)
+    (define-key map (kbd "M-S-<left>") 'tabbar-backward-group)
+    (define-key map (kbd "M-S-<right>") 'tabbar-forward-group)
     map)
   "my-keys-minor-mode keymap.")
 
