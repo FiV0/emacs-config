@@ -52,6 +52,7 @@
 (setq split-width-threshold 200)
 (setq split-height-threshold nil)
 (setq inhibit-splash-screen t)
+(add-hook 'write-file-hooks 'delete-trailing-whitespace)
 ;; (setq enable-dir-local-variables t)
 
 ;; save auto-save and backup files somewhere else
@@ -258,6 +259,10 @@ Version 2017-11-01"
 ;; cider cljs safe .dir-locals
 (add-to-list 'safe-local-variable-values '(cider-default-cljs-repl . shadow))
 (add-to-list 'safe-local-variable-values '(cider-shadow-default-options . ":app"))
+
+;; load CIDER from its source code
+;; (add-to-list 'load-path "~/Code/Clojure/cider/")
+;; (load "cider-autoloads" t t)
 
 ;; elpy stuff
 (package-initialize)
