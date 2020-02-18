@@ -30,12 +30,13 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
- ;; '(safe-local-variable-values
- ;;   (quote
- ;;    ((cider-shadow-cljs-default-options . "app")
- ;;     (cider-default-cljs-repl . shadow))
- ;;    ))
+    (flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
+ '(safe-local-variable-values
+   (quote
+    ((cider-refresh-after-fn . "com.nextjournal.journal.repl/post-refresh")
+     (cider-refresh-before-fn . "com.nextjournal.journal.repl/pre-refresh")
+     (cider-shadow-default-options . ":app")
+     (cider-default-cljs-repl . shadow))))
  '(show-paren-mode t)
  '(tabbar-background-color "gray20")
  '(tabbar-separator (quote (0.5)))
@@ -45,7 +46,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 140 :width normal)))))
+
+;; (set-face-attribute 'default nil :height 150)
 
 ;; general EMACS stuff
 (require 'use-package)
@@ -94,6 +97,19 @@
 
 ;;magit
 (require 'evil-magit)
+
+;; projectile
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+;; (setq helm-projectile-fuzzy-match nil)
+(require 'helm-projectile)
+(helm-projectile-on)
+
+;; clj-kondo
+(global-flycheck-mode)
+(require 'flycheck-clj-kondo)
 
 ;; leader mode
 (global-evil-leader-mode)
