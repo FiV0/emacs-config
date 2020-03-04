@@ -30,7 +30,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
+    (ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
  '(safe-local-variable-values
    (quote
     ((cider-refresh-after-fn . "com.nextjournal.journal.repl/post-refresh")
@@ -46,7 +46,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 140 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
 
 ;; (set-face-attribute 'default nil :height 150)
 
@@ -107,9 +107,9 @@
 (require 'helm-projectile)
 (helm-projectile-on)
 
-;; clj-kondo
-(global-flycheck-mode)
-(require 'flycheck-clj-kondo)
+;; ace-jump-mode
+(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+(define-key evil-normal-state-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
 ;; leader mode
 (global-evil-leader-mode)
@@ -275,6 +275,10 @@ Version 2017-11-01"
 ;; cider cljs safe .dir-locals
 (add-to-list 'safe-local-variable-values '(cider-default-cljs-repl . shadow))
 (add-to-list 'safe-local-variable-values '(cider-shadow-default-options . ":app"))
+
+;; clj-kondo
+(global-flycheck-mode)
+(require 'flycheck-clj-kondo)
 
 ;; load CIDER from its source code
 ;; (add-to-list 'load-path "~/Code/Clojure/cider/")
