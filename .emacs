@@ -80,6 +80,9 @@
 ;; set cursor color to red
 (set-cursor-color "#ef330e")
 
+;; lisp indent
+(setq lisp-indent-offset t)
+
 ;; Highlighting of FIXME and TODO
 ;; (require 'fic-mode)
 ;; (setq fic-highlighted-words '("FIXME" "TODO"))
@@ -204,6 +207,9 @@
              'slime-repl-mode)
 (add-to-list 'aggressive-indent-excluded-modes
              'cider-repl-mode)
+(add-to-list 'aggressive-indent-excluded-modes
+             'elisp-mode)
+
 ;; (add-to-list 'aggressive-indent-dont-indent-if
 ;;              '(and (derived-mode-p 'slime-repl-mode)
 ;;                    (looking-back "; *")))
@@ -326,7 +332,8 @@ Called via the `after-load-functions' special hook."
 (defun my-minibuffer-setup-hook ()
   (my-keys-minor-mode 0))
 
-(add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)
+(add-hook 'minibuffer-setup-hook
+          'my-minibuffer-setup-hook)
 
 
 ;; tabbar stuff
@@ -389,6 +396,7 @@ Called via the `after-load-functions' special hook."
 (defvar my/tabbar-right (powerline-wave-left nil 'tabbar-default my/tabbar-height))
 (defun my/tabbar-tab-label-function (tab)
   (powerline-render (list my/tabbar-left
-        (format " %s  " (car tab))
-        my/tabbar-right)))
+                          (format " %s  " (car tab))
+                          my/tabbar-right)))
 (setq tabbar-tab-label-function #'my/tabbar-tab-label-function)
+(put 'scroll-left 'disabled nil)
