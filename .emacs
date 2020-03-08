@@ -3,6 +3,7 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (load "~/.emacs.d/init-packages.el")
+(add-to-list 'load-path "~/.emacs.d/nextjournal-init.el")
 
 ;; custom themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
@@ -46,7 +47,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 140 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
 
 ;; (set-face-attribute 'default nil :height 150)
 
@@ -56,7 +57,9 @@
 (setq split-height-threshold nil)
 (setq inhibit-splash-screen t)
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
-(server-start)
+
+(load "server")
+(unless (server-running-p) (server-start))
 ;; (setq enable-dir-local-variables t)
 
 ;; save auto-save and backup files somewhere else
@@ -401,20 +404,3 @@ Called via the `after-load-functions' special hook."
                           my/tabbar-right)))
 (setq tabbar-tab-label-function #'my/tabbar-tab-label-function)
 (put 'scroll-left 'disabled nil)
-
-;;nextjournal stuff
-(defun nextjournal/add-nextjournal-cljs-repl-type ()
-  (when (not (seq-some (lambda (entry) (eq 'nextjournal (car entry))) cider-cljs-repl-types))
-    (add-to-list 'cider-cljs-repl-types '(nextjournal "(do (require 'com.nextjournal.journal.repl) (com.nextjournal.journal.repl/wait-for-figwheel) (com.nextjournal.journal.repl/editor-repl))" nil))))
-
-(with-eval-after-load 'cider
-  (progn
-    (add-to-list 'clojure-align-binding-forms "p/let")
-
-    ;; automatically reuse cider repl buffers without prompting
-    (defadvice cider--choose-reusable-repl-buffer (around auto-confirm compile activate)
-      (cl-letf (((symbol-function 'y-or-n-p) (lambda (&rest args) t))
-                ((symbol-function 'completing-read) (lambda (prompt collection &rest args) (car collection))))
-        ad-do-it))
-
-    (nextjournal/add-nextjournal-cljs-repl-type)))
