@@ -31,7 +31,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
+    (dash expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
  '(safe-local-variable-values
    (quote
     ((cider-refresh-after-fn . "com.nextjournal.journal.repl/post-refresh")
@@ -342,6 +342,8 @@ Called via the `after-load-functions' special hook."
 
 ;; tabbar stuff
 (require 'tabbar)
+(require 'dash)
+
 (tabbar-mode 1)
 (defun my-tabbar-buffer-groups () ;; customize to show all normal files in one group
   "Returns the name of the tab group names the current buffer belongs to.
@@ -349,9 +351,30 @@ Called via the `after-load-functions' special hook."
     dired buffers), and the rest.  This works at least with Emacs v24.2 using
     tabbar.el v1.7."
   (list (cond ((string-equal "*" (substring (buffer-name) 0 1)) "emacs")
-        ((eq major-mode 'dired-mode) "emacs")
-        (t "user"))))
+              ((eq major-mode 'dired-mode) "emacs")
+              ((string-equal "magit" (substring (buffer-name) 0 5)) "magit")
+              (t "user"))))
+
 (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups)
+
+(defun tabbar+group-names ()
+  "List all tabbar groups."
+  (->> (-map
+        #'(lambda (b)
+            (with-current-buffer b
+              (funcall tabbar-buffer-groups-function)))
+        (buffer-list))
+       (-distinct)))
+
+(defun tabbar+get-group (buff)
+  (with-current-buffer buff
+    (car (funcall tabbar-buffer-groups-function))))
+
+(defun tabbar+switch-group (name)
+  "Change current group."
+  (interactive
+   (list (completing-read "Tab group: " (tabbar+group-names))))
+  (switch-to-buffer (--first (string= name (tabbar+get-group it)) (buffer-list))))
 
 ;; (setq *tabbar-ignore-buffers* '("*scratch*" "*Messages*" "*GNU Emacs*"
 ;;                                 "*inferior-lisp*" "*slime-events*"))
