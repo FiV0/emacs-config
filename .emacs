@@ -3,7 +3,6 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (load "~/.emacs.d/init-packages.el")
-(add-to-list 'load-path "~/.emacs.d/nextjournal-init.el")
 
 ;; custom themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
@@ -49,7 +48,6 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
 
-;; (set-face-attribute 'default nil :height 150)
 
 ;; general EMACS stuff
 (require 'use-package)
@@ -263,6 +261,9 @@ Version 2017-11-01"
 (setq cider-auto-jump-to-error 'errors-only)
 ;; (setq cider-preferred-build-tool 'lein)
 
+;; prevent long eval times the first time a cljs form is evaled
+(setq cider-auto-track-ns-form-changes nil)
+
 (defun my-cider-jack-in ()
   (interactive)
   (cider-jack-in-clj '(4)))
@@ -429,3 +430,6 @@ Called via the `after-load-functions' special hook."
                           my/tabbar-right)))
 (setq tabbar-tab-label-function #'my/tabbar-tab-label-function)
 (put 'scroll-left 'disabled nil)
+
+;;custom configs
+(add-to-list 'load-path "~/.emacs.d/nextjournal-init.el")

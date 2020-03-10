@@ -15,4 +15,17 @@
 
     (nextjournal/add-nextjournal-cljs-repl-type)))
 
+(defun nextjournal/eval-defun-at-point-and-refresh ()
+  (interactive)
+  (cider-eval-defun-at-point)
+  (cider-interactive-cljs-eval "(do (require '[re-frame.core]) (re-frame.core/dispatch [:refresh]))"))
+
+(require 'evil-leader)
+(dolist (m '(clojurescript-mode
+             clojurec-mode
+             clojurex-mode
+             cider-repl-mode))
+  (evil-leader/set-key
+    "er" 'nextjournal/eval-defun-at-point-and-refresh))
+
 (provide 'nextjournal-init)
