@@ -31,7 +31,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (dash expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
+    (helm-ag dash expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
  '(safe-local-variable-values
    (quote
     ((cider-refresh-after-fn . "com.nextjournal.journal.repl/post-refresh")
@@ -296,6 +296,7 @@ Version 2017-11-01"
 
 ;; load CIDER from its source code
 ;; (add-to-list 'load-path "~/Code/Clojure/cider/")
+
 ;; (load "cider-autoloads" t t)
 
 ;; elpy stuff
@@ -311,8 +312,9 @@ Version 2017-11-01"
     (define-key map (kbd "<M-right>") 'tabbar-forward-tab)
     (define-key map (kbd "M-h") 'tabbar-backward-group)
     (define-key map (kbd "M-l") 'tabbar-forward-group)
-    (define-key map (kbd "M-S-<left>") 'tabbar-backward-group)
-    (define-key map (kbd "M-S-<right>") 'tabbar-forward-group)
+    ;; this is is better to use when not on keyboard.io
+    (define-key map (kbd "M-s-<left>") 'tabbar-backward-group)
+    (define-key map (kbd "M-s-<right>") 'tabbar-forward-group)
     map)
   "my-keys-minor-mode keymap.")
 
