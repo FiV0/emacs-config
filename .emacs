@@ -295,6 +295,9 @@ Version 2017-11-01"
 (global-flycheck-mode)
 (require 'flycheck-clj-kondo)
 
+(add-hook 'cider-mode-hook
+          (lambda () (setq next-error-function #'flycheck-next-error-function)))
+
 ;; load CIDER from its source code
 ;; (add-to-list 'load-path "~/Code/Clojure/cider/")
 
@@ -432,4 +435,5 @@ Called via the `after-load-functions' special hook."
 (put 'scroll-left 'disabled nil)
 
 ;;custom configs
-(add-to-list 'load-path "~/.emacs.d/nextjournal-init.el")
+(load "~/.emacs.d/nextjournal-init.el")
+(require 'nextjournal-init)
