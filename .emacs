@@ -30,10 +30,25 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (helm-ag dash expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit kotlin-mode dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
+    (helm-ag dash expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit dap-mode company-lsp lsp-mode lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
  '(safe-local-variable-values
    (quote
-    ((cider-refresh-after-fn . "com.nextjournal.journal.repl/post-refresh")
+    ((eval progn
+           (defadvice cider--choose-reusable-repl-buffer
+               (around auto-confirm compile activate)
+             (cl-letf
+                 (((symbol-function
+                    (quote y-or-n-p))
+                   (lambda
+                     (&rest args)
+                     t))
+                  ((symbol-function
+                    (quote completing-read))
+                   (lambda
+                     (prompt collection &rest args)
+                     (car collection))))
+               ad-do-it)))
+     (cider-refresh-after-fn . "com.nextjournal.journal.repl/post-refresh")
      (cider-refresh-before-fn . "com.nextjournal.journal.repl/pre-refresh")
      (cider-shadow-default-options . ":app")
      (cider-default-cljs-repl . shadow))))
@@ -167,10 +182,6 @@
 ;; (require 'company-lsp)
 ;; (push 'company-lsp company-backends)
 
-;;java stuff
-(require 'lsp-java)
-(add-hook 'java-mode-hook #'lsp)
-
 ;; paredit hooks
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
@@ -302,10 +313,6 @@ Version 2017-11-01"
 ;; (add-to-list 'load-path "~/Code/Clojure/cider/")
 
 ;; (load "cider-autoloads" t t)
-
-;; elpy stuff
-(package-initialize)
-(elpy-enable)
 
 ;; My preferred keys
 (defvar my-keys-minor-mode-map

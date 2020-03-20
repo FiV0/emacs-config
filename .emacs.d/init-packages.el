@@ -8,8 +8,8 @@
 (setq package-list
       '(helm-ag dash expand-region ace-jump-mode
                 flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent
-                powerline evil-magit evil magit kotlin-mode
-                dap-mode lsp-java company-lsp lsp-mode elpy lispyville markdown-mode
+                powerline evil-magit evil magit
+                dap-mode company-lsp lsp-mode lispyville markdown-mode
                 company-quickhelp slime-company rainbow-delimiters
                 evil-nerd-commenter evil-leader use-package
                 highlight-parentheses cider bind-key tabbar
