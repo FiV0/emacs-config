@@ -18,7 +18,7 @@
 (defun nextjournal/eval-defun-at-point-and-refresh ()
   (interactive)
   (cider-eval-defun-at-point)
-  (cider-interactive-cljs-eval "(do (require '[re-frame.core]) (re-frame.core/dispatch [:refresh]))"))
+  (cider-interactive-eval "(do (require '[re-frame.core]) (re-frame.core/dispatch [:refresh]))"))
 
 (require 'evil-leader)
 (dolist (m '(clojurescript-mode

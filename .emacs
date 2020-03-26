@@ -117,6 +117,7 @@
 
 ;;magit
 (require 'evil-magit)
+(setq magit-save-repository-buffers 'dontask)
 
 ;; projectile
 (projectile-mode +1)
@@ -241,7 +242,7 @@ URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
 Version 2017-11-01"
   (interactive)
   (let (($buf (generate-new-buffer "untitled")))
-    (funcall initial-major-mode)
+    ;; (funcall initial-major-mode)
     (switch-to-buffer $buf)
     (setq buffer-offer-save t)
     $buf))
