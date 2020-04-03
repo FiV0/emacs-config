@@ -33,21 +33,16 @@
     (helm-ag dash expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit dap-mode company-lsp lsp-mode lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
  '(safe-local-variable-values
    (quote
-    ((eval progn
-           (defadvice cider--choose-reusable-repl-buffer
-               (around auto-confirm compile activate)
-             (cl-letf
-                 (((symbol-function
-                    (quote y-or-n-p))
-                   (lambda
-                     (&rest args)
-                     t))
-                  ((symbol-function
-                    (quote completing-read))
-                   (lambda
-                     (prompt collection &rest args)
-                     (car collection))))
-               ad-do-it)))
+    ((eval
+      (lambda nil
+        (let
+            ((init-file-path
+              (expand-file-name "emacs.d/nextjournal.el" default-directory)))
+          (when
+              (file-exists-p init-file-path)
+            (load init-file-path)
+            (require
+             (quote nextjournal))))))
      (cider-refresh-after-fn . "com.nextjournal.journal.repl/post-refresh")
      (cider-refresh-before-fn . "com.nextjournal.journal.repl/pre-refresh")
      (cider-shadow-default-options . ":app")
@@ -97,8 +92,11 @@
 ;; set cursor color to red
 (set-cursor-color "#ef330e")
 
+;; enable goto globally
+;; (goto-address-mode 1)
+
 ;; lisp indent
-(setq lisp-indent-offset t)
+(setq lisp-indent-offset nil)
 
 ;; Highlighting of FIXME and TODO
 ;; (require 'fic-mode)
@@ -272,6 +270,11 @@ Version 2017-11-01"
 (setq cider-repl-history-file "~/.cider-repl-history")
 (setq cider-auto-jump-to-error 'errors-only)
 ;; (setq cider-preferred-build-tool 'lein)
+
+(with-eval-after-load 'clojure-mode
+  (define-clojure-indent
+    (as-> 1)
+    (match 1)))
 
 ;; prevent long eval times the first time a cljs form is evaled
 (setq cider-auto-track-ns-form-changes nil)
