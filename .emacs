@@ -131,8 +131,8 @@
 (define-key evil-normal-state-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
 ;; expand-region
-(global-set-key (kbd "s-1") 'er/expand-region)
-(global-set-key (kbd "s-2") 'er/contract-region)
+(global-set-key (kbd "s-e") 'er/expand-region)
+(global-set-key (kbd "s-c") 'er/contract-region)
 
 ;; leader mode
 (global-evil-leader-mode)
@@ -317,19 +317,73 @@ Version 2017-11-01"
 ;; (add-to-list 'load-path "~/Code/Clojure/cider/")
 
 ;; (load "cider-autoloads" t t)
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/awesome-tab/"))
+
+(require 'awesome-tab)
+
+(awesome-tab-mode t)
+(awesome-tab-build-helm-source)
+
+(setq *awesome-tab-ignore-buffers* '("*scratch*"  "*GNU Emacs*"
+                                     "*inferior-lisp*" "*slime-events*"))
+(setq awesome-tab-height 120)
+(setq awesome-tab-dark-unselected-blend 0.7)
+(setq awesome-tab-dark-active-bar-color "#F62459")
+(setq awesome-tab-active-bar-width 5)
+
+(global-set-key (kbd "s-1") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "s-2") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "s-3") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "s-4") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "s-5") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "s-6") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "s-7") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "s-8") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "s-9") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "s-0") 'awesome-tab-select-visible-tab)
+
+(defun awesome-tab-hide-tab (x)
+  (let ((name (format "%s" x)))
+    (or (member name *awesome-tab-ignore-buffers*)
+        (string-prefix-p "*helm" name))))
+
+(defun awesome-tab-buffer-groups ()
+  "`awesome-tab-buffer-groups' control buffers' group rules.
+Group awesome-tab with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
+All buffer name start with * will group to \"Emacs\".
+Other buffer group by `awesome-tab-get-group-name' with project name."
+  (list
+   (let ((name (buffer-name)))
+     (cond ((and (>= (length name) 6)
+                 (or (string-equal "*slime" (substring name 0 6))
+                     (string-equal "*cider" (substring name 0 6))))
+            "repl")
+           ((string-equal "*" (substring name 0 1))
+            "emacs")
+           ((eq major-mode 'dired-mode)
+            "dired")
+           ((string-equal "magit" (substring name 0 5))
+            "magit")
+           (t "user")))))
+
+(global-set-key (kbd "M-s-1") (lambda () (interactive) (awesome-tab-switch-group "user")))
+(global-set-key (kbd "M-s-2") (lambda () (interactive) (awesome-tab-switch-group "repl")))
+(global-set-key (kbd "M-s-3") (lambda () (interactive) (awesome-tab-switch-group "emacs")))
+(global-set-key (kbd "M-s-4") (lambda () (interactive) (awesome-tab-switch-group "dired")))
+(global-set-key (kbd "M-s-5") (lambda () (interactive) (awesome-tab-switch-group "magit")))
 
 ;; My preferred keys
 (defvar my-keys-minor-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "M-<down>") 'kill-this-buffer) ;; this overrides some paredit binding
     (define-key map (kbd "M-<up>") 'new-empty-buffer)
-    (define-key map (kbd "<M-left>") 'tabbar-backward-tab)
-    (define-key map (kbd "<M-right>") 'tabbar-forward-tab)
-    (define-key map (kbd "M-h") 'tabbar-backward-group)
-    (define-key map (kbd "M-l") 'tabbar-forward-group)
+    (define-key map (kbd "<M-left>") 'awesome-tab-backward-tab)
+    (define-key map (kbd "<M-right>") 'awesome-tab-forward-tab)
+    (define-key map (kbd "M-h") 'awesome-tab-backward-group)
+    (define-key map (kbd "M-l") 'awesome-tab-forward-group)
     ;; this is is better to use when not on keyboard.io
-    (define-key map (kbd "M-s-<left>") 'tabbar-backward-group)
-    (define-key map (kbd "M-s-<right>") 'tabbar-forward-group)
+    (define-key map (kbd "M-s-<left>") 'awesome-tab-backward-group)
+    (define-key map (kbd "M-s-<right>") 'awesome-tab-forward-group)
     map)
   "my-keys-minor-mode keymap.")
 
@@ -356,93 +410,6 @@ Called via the `after-load-functions' special hook."
 (add-hook 'minibuffer-setup-hook
           'my-minibuffer-setup-hook)
 
-
-;; tabbar stuff
-(require 'tabbar)
-(require 'dash)
-
-(tabbar-mode 1)
-(defun my-tabbar-buffer-groups () ;; customize to show all normal files in one group
-  "Returns the name of the tab group names the current buffer belongs to.
-    There are two groups: Emacs buffers (those whose name starts with '*', plus
-    dired buffers), and the rest.  This works at least with Emacs v24.2 using
-    tabbar.el v1.7."
-  (list (cond ((string-equal "*" (substring (buffer-name) 0 1)) "emacs")
-              ((eq major-mode 'dired-mode) "emacs")
-              ((string-equal "magit" (substring (buffer-name) 0 5)) "magit")
-              (t "user"))))
-
-(setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups)
-
-(defun tabbar+group-names ()
-  "List all tabbar groups."
-  (->> (-map
-        #'(lambda (b)
-            (with-current-buffer b
-              (funcall tabbar-buffer-groups-function)))
-        (buffer-list))
-       (-distinct)))
-
-(defun tabbar+get-group (buff)
-  (with-current-buffer buff
-    (car (funcall tabbar-buffer-groups-function))))
-
-(defun tabbar+switch-group (name)
-  "Change current group."
-  (interactive
-   (list (completing-read "Tab group: " (tabbar+group-names))))
-  (switch-to-buffer (--first (string= name (tabbar+get-group it)) (buffer-list))))
-
-;; (setq *tabbar-ignore-buffers* '("*scratch*" "*Messages*" "*GNU Emacs*"
-;;                                 "*inferior-lisp*" "*slime-events*"))
-;;(setq *tabbar-ignore-buffers* '())
-;; (defun remove-unwanted-buffers ()
-;;   (buffer-list))
-
-;; (setq tabbar-buffer-list-function 'remove-unwanted-buffers)
-
-;; (setq tabbar-buffer-list-function
-;;       (lambda ()
-;;         (buffer-list)
-;;         (remove-if
-;;                   (lambda (buffer) nil
-;;                     (and (not (eq (current-buffer) buffer)) ; Always include the current buffer.
-;;                          (loop for name in *tabbar-ignore-buffers* ;remove buffer name in this list.
-;;                                thereis (string-equal (buffer-name buffer) name))
-;;                          )
-;;                     )
-;;                   (buffer-list)
-;;                   )
-;;         ))
-
-;; Colors for tabbar
-(set-face-attribute 'tabbar-default nil
-                    :background "gray20" :foreground
-                    "gray60" :distant-foreground "gray50"
-                    :family "DejaVu Sans Mono" :box nil)
-(set-face-attribute 'tabbar-unselected nil
-                    :background "gray80" :foreground "black" :box nil)
-(set-face-attribute 'tabbar-modified nil
-                    :foreground "red4" :box nil
-                    :inherit 'tabbar-unselected)
-(set-face-attribute 'tabbar-selected nil
-                    :background "#4090c0" :foreground "white" :box nil)
-(set-face-attribute 'tabbar-selected-modified nil
-                    :inherit 'tabbar-selected :foreground "GoldenRod2" :box nil)
-(set-face-attribute 'tabbar-button nil
-                    :box nil)
-
-;; Use Powerline to make tabs look nicer
-;; this needs to run *after* the colors are set
-(require 'powerline)
-(defvar my/tabbar-height 20)
-(defvar my/tabbar-left (powerline-wave-right 'tabbar-default nil my/tabbar-height))
-(defvar my/tabbar-right (powerline-wave-left nil 'tabbar-default my/tabbar-height))
-(defun my/tabbar-tab-label-function (tab)
-  (powerline-render (list my/tabbar-left
-                          (format " %s  " (car tab))
-                          my/tabbar-right)))
-(setq tabbar-tab-label-function #'my/tabbar-tab-label-function)
 (put 'scroll-left 'disabled nil)
 
 ;;custom configs
