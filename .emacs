@@ -37,14 +37,39 @@
       (lambda nil
         (let
             ((init-file-path
-              (expand-file-name "emacs.d/nextjournal.el" default-directory)))
+              (expand-file-name "spacemacs.d/nextjournal.el" default-directory)))
           (when
               (file-exists-p init-file-path)
             (load init-file-path)
             (require
              (quote nextjournal))))))
+     (eval progn
+           (defadvice cider--choose-reusable-repl-buffer
+               (around auto-confirm compile activate)
+             (cl-letf
+                 (((symbol-function
+                    (quote y-or-n-p))
+                   (lambda
+                     (&rest args)
+                     t))
+                  ((symbol-function
+                    (quote completing-read))
+                   (lambda
+                     (prompt collection &rest args)
+                     (car collection))))
+               ad-do-it)))
      (cider-refresh-after-fn . "com.nextjournal.journal.repl/post-refresh")
      (cider-refresh-before-fn . "com.nextjournal.journal.repl/pre-refresh")
+     (cider-preferred-build-tool . clojure-cli)
+     (eval progn
+           (make-variable-buffer-local
+            (quote cider-jack-in-nrepl-middlewares))
+           (add-to-list
+            (quote cider-jack-in-nrepl-middlewares)
+            "shadow.cljs.devtools.server.nrepl/middleware"))
+     (cider-custom-cljs-repl-init-form . "(do (user/cljs-repl) (user/browse 8280))")
+     (cider-default-cljs-repl . custom)
+     (cider-clojure-cli-global-options . "-A:dev")
      (cider-shadow-default-options . ":app")
      (cider-default-cljs-repl . shadow))))
  '(show-paren-mode t)
@@ -112,6 +137,8 @@
 ;;allow tabs in evil mode
 (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 (evil-mode 1)
+;; make normal mode the default
+(setq evil-emacs-state-modes nil)
 
 ;;magit
 (require 'evil-magit)
@@ -121,6 +148,7 @@
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(setq projectile-indexing-method 'hybrid) ;; indexes non tracked files
 
 ;; (setq helm-projectile-fuzzy-match nil)
 (require 'helm-projectile)
@@ -212,6 +240,10 @@
 (add-hook 'clojure-mode-hook          #'rainbow-delimiters-mode)
 (add-hook 'cider-repl-mode-hook       #'rainbow-delimiters-mode)
 (add-hook 'slime-repl-mode-hook       #'rainbow-delimiters-mode)
+
+;; set repl buffers to insert initially
+(evil-set-initial-state 'cider-repl-mode 'insert)
+
 ;; aggressive indent
 (global-aggressive-indent-mode 1)
 ;; don't indent comments in SLIME repl and cider-repl
@@ -226,8 +258,6 @@
 ;;              '(and (derived-mode-p 'slime-repl-mode)
 ;;                    (looking-back "; *")))
 
-;; make normal mode the default
-(setq evil-emacs-state-modes nil)
 
 ;; new empty buffer without prompting for a name
 (defun new-empty-buffer ()
@@ -275,6 +305,9 @@ Version 2017-11-01"
   (define-clojure-indent
     (as-> 1)
     (match 1)))
+
+;; consider forms in comment forms top level
+(setq clojure-toplevel-inside-comment-form t)
 
 ;; prevent long eval times the first time a cljs form is evaled
 (setq cider-auto-track-ns-form-changes nil)
@@ -330,6 +363,7 @@ Version 2017-11-01"
 (setq awesome-tab-dark-unselected-blend 0.7)
 (setq awesome-tab-dark-active-bar-color "#F62459")
 (setq awesome-tab-active-bar-width 5)
+(setq awesome-tab-show-tab-index t)
 
 (global-set-key (kbd "s-1") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "s-2") 'awesome-tab-select-visible-tab)
@@ -356,7 +390,8 @@ Other buffer group by `awesome-tab-get-group-name' with project name."
    (let ((name (buffer-name)))
      (cond ((and (>= (length name) 6)
                  (or (string-equal "*slime" (substring name 0 6))
-                     (string-equal "*cider" (substring name 0 6))))
+                     (string-equal "*cider" (substring name 0 6))
+                     (string-equal "*ielm" (substring name 0 5))))
             "repl")
            ((string-equal "*" (substring name 0 1))
             "emacs")
@@ -384,6 +419,8 @@ Other buffer group by `awesome-tab-get-group-name' with project name."
     ;; this is is better to use when not on keyboard.io
     (define-key map (kbd "M-s-<left>") 'awesome-tab-backward-group)
     (define-key map (kbd "M-s-<right>") 'awesome-tab-forward-group)
+    (define-key map (kbd "C-<left>") 'awesome-tab-move-current-tab-left)
+    (define-key map (kbd "C-<right>") 'awesome-tab-move-current-tab-to-right)
     map)
   "my-keys-minor-mode keymap.")
 
