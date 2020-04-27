@@ -30,7 +30,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (ido-completing-read+ helm-ag dash expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit dap-mode company-lsp lsp-mode lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
+    (cider-eval-sexp-fu ido-completing-read+ helm-ag dash expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit dap-mode company-lsp lsp-mode lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
  '(safe-local-variable-values
    (quote
     ((eval
@@ -356,6 +356,7 @@ Version 2017-11-01"
 
 ;; load CIDER from its source code
 ;; (add-to-list 'load-path "~/Code/Clojure/cider/")
+(require 'cider-eval-sexp-fu)
 
 ;; (load "cider-autoloads" t t)
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/awesome-tab/"))
