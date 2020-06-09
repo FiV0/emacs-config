@@ -37,6 +37,16 @@
       (lambda nil
         (let
             ((init-file-path
+              (expand-file-name "emacs.d/nextjournal.el" default-directory)))
+          (when
+              (file-exists-p init-file-path)
+            (load init-file-path)
+            (require
+             (quote nextjournal))))))
+     (eval
+      (lambda nil
+        (let
+            ((init-file-path
               (expand-file-name "spacemacs.d/nextjournal.el" default-directory)))
           (when
               (file-exists-p init-file-path)
@@ -81,7 +91,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 160 :width normal)))))
 
 
 ;; general EMACS stuff
@@ -331,7 +341,9 @@ Version 2017-11-01"
   (define-key evil-normal-state-map (kbd "M-.") nil)
   ;; custom debug command
   (define-key cider-mode-map (kbd "C-c C-y") #'cider-debug-defun-at-point)
-  (setq cider-repl-display-help-banner nil))
+  (setq cider-repl-display-help-banner nil)
+  (evil-leader/set-key
+    "cb" 'cider-repl-clear-buffer))
 
 ;; cider evil interpolation
 ;; (add-hook 'clojure-mode-hook          #'my-cider-mode-override)
@@ -457,7 +469,3 @@ Called via the `after-load-functions' special hook."
           'my-minibuffer-setup-hook)
 
 (put 'scroll-left 'disabled nil)
-
-;;custom configs
-(load "~/.emacs.d/nextjournal-init.el")
-(require 'nextjournal-init)
