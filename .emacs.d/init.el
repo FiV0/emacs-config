@@ -341,6 +341,8 @@ Version 2017-11-01"
   (define-key evil-normal-state-map (kbd "M-.") nil)
   ;; custom debug command
   (define-key cider-mode-map (kbd "C-c C-y") #'cider-debug-defun-at-point)
+  ;;
+  (define-key cider-mode-map (kbd "C-c C-p") #'cider-pprint-eval-last-sexp-to-comment)
   (setq cider-repl-display-help-banner nil)
   (evil-leader/set-key
     "cb" 'cider-repl-clear-buffer))
