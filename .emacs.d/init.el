@@ -91,7 +91,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 160 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
 
 
 ;; general EMACS stuff
@@ -317,7 +317,7 @@ Version 2017-11-01"
 (setq cider-repl-history-size 1000)
 (setq cider-repl-history-file "~/.cider-repl-history")
 (setq cider-auto-jump-to-error 'errors-only)
-;; (setq cider-preferred-build-tool 'lein)
+(setq nrepl-prompt-to-kill-server-buffer-on-quit nil)
 
 (with-eval-after-load 'clojure-mode
   (define-clojure-indent
