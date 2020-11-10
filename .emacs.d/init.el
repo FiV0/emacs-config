@@ -33,7 +33,52 @@
     (cider-eval-sexp-fu ido-completing-read+ helm-ag dash expand-region ace-jump-mode flycheck-clj-kondo helm-projectile projectile camcorder aggressive-indent powerline evil-magit evil magit dap-mode company-lsp lsp-mode lispyville markdown-mode company-quickhelp slime-company rainbow-delimiters evil-nerd-commenter evil-leader use-package cider bind-key tabbar paredit company slime evil-surround)))
  '(safe-local-variable-values
    (quote
-    ((eval
+    ((cider-refresh-after-fn . "integrant.repl/resume")
+     (cider-refresh-before-fn . "integrant.repl/suspend")
+     (cider-enhanced-cljs-completion-p)
+     (cider-clojure-cli-global-options . "-A:dev:test")
+     (eval
+      (lambda nil
+        (when
+            (not
+             (featurep
+              (quote nextjournal)))
+          (let
+              ((init-file-path
+                (expand-file-name "emacs.d/nextjournal.el" default-directory)))
+            (when
+                (file-exists-p init-file-path)
+              (load init-file-path)
+              (require
+               (quote nextjournal)))))))
+     (eval define-clojure-indent
+           (assoc 0)
+           (ex-info 0)
+           (for! 1)
+           (for* 1)
+           (as-> 2)
+           (uix/context-provider 1)
+           (ductile\.ui\.commands\.api/register! 1)
+           (ductile\.ui\.commands\.api/register-context-fn! 1)
+           (commands/register! 1))
+     (web-mode-markup-indent-offset . default-indent)
+     (web-mode-css-indent-offset . default-indent)
+     (web-mode-code-indent-offset . default-indent)
+     (javascript-indent-level . default-indent)
+     (css-indent-offset . default-indent)
+     (default-indent . 2)
+     (js2-mode-show-strict-warnings)
+     (magit-save-repository-buffers . dontask)
+     (frame-resize-pixelwise . t)
+     (display-line-numbers-width-start . t)
+     (cljr-magic-requires)
+     (cider-save-file-on-load)
+     (cider-repl-display-help-banner)
+     (cider-redirect-server-output-to-repl . t)
+     (clojure-toplevel-inside-comment-form . t)
+     (cider-auto-track-ns-form-changes)
+     (cider-clojure-cli-global-options . "-A:global:dev:test")
+     (eval
       (lambda nil
         (let
             ((init-file-path
@@ -81,11 +126,14 @@
      (cider-default-cljs-repl . custom)
      (cider-clojure-cli-global-options . "-A:dev")
      (cider-shadow-default-options . ":app")
-     (cider-default-cljs-repl . shadow))))
+     (cider-default-cljs-repl . shadow)
+     (cider-custom-cljs-repl-init-form . "(do (user/go) (user/cljs-connect) (user/browse 8280))")
+     (cider-custom-cljs-repl-init-form . "(do (user/go) (user/cljs-repl))"))))
  '(show-paren-mode t)
  '(tabbar-background-color "gray20")
  '(tabbar-separator (quote (0.5)))
  '(tabbar-use-images nil))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -341,15 +389,27 @@ Version 2017-11-01"
   (define-key evil-normal-state-map (kbd "M-.") nil)
   ;; custom debug command
   (define-key cider-mode-map (kbd "C-c C-y") #'cider-debug-defun-at-point)
-  ;;
+
   (define-key cider-mode-map (kbd "C-c C-p") #'cider-pprint-eval-last-sexp-to-comment)
+
   (setq cider-repl-display-help-banner nil)
   (evil-leader/set-key
     "cb" 'cider-repl-clear-buffer))
 
+;; copied from lesser-evil
+(defun cider-pprint-register (register)
+  (interactive (list (register-read-with-preview "Eval register: ")))
+  (cider--pprint-eval-form (get-register register)))
+
+(evil-leader/set-key
+  "," 'cider-pprint-register)
+
+(set-register ?r "(user/reset)")
+
 ;; cider evil interpolation
 ;; (add-hook 'clojure-mode-hook          #'my-cider-mode-override)
 (add-hook 'cider-repl-mode-hook       #'my-cider-mode-override)
+
 
 ;; cider + evil interpolation
 (defun my-cider-debug-setup ()
