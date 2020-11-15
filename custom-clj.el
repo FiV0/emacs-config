@@ -46,7 +46,9 @@
     "q" 'cider-popup-buffer-quit-function
     "," 'cider-pprint-register)
 
-  (set-register ?r "(user/reset)"))
+  (set-register ?r "(user/reset)")
+
+  (setq confirm-kill-processes nil))
 
 (defun my-cider-debug-setup ()
   (evil-make-overriding-map cider--debug-mode-map 'normal)

@@ -39,6 +39,10 @@
 
 (add-hook 'sldb-hook 'sldb-leader-setup)
 
+(defun slime-connected-setup ()
+  (setq confirm-kill-processes nil))
+
+(add-hook 'slime-connected-hook 'slime-connected-setup)
 
 (provide 'custom-cl)
 ;;; custom-cl.el ends here
