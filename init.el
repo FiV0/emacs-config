@@ -61,6 +61,12 @@
 ;; tabs as spaces
 (progn (setq-default indent-tabs-mode nil))
 
+;; spellchecking
+(require 'flyspell)
+(add-hook 'text-mode-hook (lambda () (flyspell-mode 1)))
+(add-hook 'prog-mode-hook (lambda () (flyspell-prog-mode)))
+(setq flyspell-issue-message-flag nil)
+
 ;; lisp indent
 (setq lisp-indent-offset nil)
 
