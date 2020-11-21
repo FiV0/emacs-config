@@ -63,8 +63,14 @@
 
 ;; spellchecking
 (require 'flyspell)
-(add-hook 'text-mode-hook (lambda () (flyspell-mode 1)))
-(add-hook 'prog-mode-hook (lambda () (flyspell-prog-mode)))
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'emacs-lisp-mode-hook       'flyspell-prog-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook 'flyspell-prog-mode)
+(add-hook 'ielm-mode-hook             'flyspell-prog-mode)
+(add-hook 'lisp-mode-hook             'flyspell-prog-mode)
+(add-hook 'lisp-interaction-mode-hook 'flyspell-prog-mode)
+(add-hook 'scheme-mode-hook           'flyspell-prog-mode)
+
 (setq flyspell-issue-message-flag nil)
 
 ;; lisp indent

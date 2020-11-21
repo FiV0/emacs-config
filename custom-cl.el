@@ -16,6 +16,8 @@
 ;; rainbow-parentheses
 (add-hook 'slime-repl-mode-hook       #'rainbow-delimiters-mode)
 
+;; flyspell in comments
+(add-hook 'slime-repl-mode-hook       'flyspell-prog-mode)
 
 (require 'slime-company)
 (setq slime-company-completion 'fuzzy)

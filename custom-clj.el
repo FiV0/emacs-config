@@ -75,6 +75,10 @@
 (add-hook 'clojure-mode-hook          #'rainbow-delimiters-mode)
 (add-hook 'cider-repl-mode-hook       #'rainbow-delimiters-mode)
 
+;; flyspell in prog-mode
+(add-hook 'clojure-mode-hook          'flyspell-prog-mode)
+(add-hook 'cider-repl-mode-hook       'flyspell-prog-mode)
+
 (evil-leader/set-key
   ;; to be consistent with slime
   "q" 'cider-popup-buffer-quit-function)
