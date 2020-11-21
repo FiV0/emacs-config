@@ -277,3 +277,4 @@ Called via the `after-load-functions' special hook."
 ;; awesome is a local package
 (add-to-list 'load-path (add-user-dir-path "awesome-tab/"))
 (load (add-user-dir-path "custom-awesome-tab.el")) ; awesome-tab
+(load (add-user-dir-path "custom-py.el")) ; python

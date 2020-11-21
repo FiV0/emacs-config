@@ -23,6 +23,7 @@
         cider
         cider-eval-sexp-fu
         company
+        company-jedi
         company-lsp
         company-quickhelp
         dash
@@ -34,6 +35,7 @@
         evil-surround
         expand-region
         flycheck-clj-kondo
+        flycheck-color-mode-line
         helm-ag
         helm-projectile
         highlight-parentheses
@@ -45,6 +47,7 @@
         paredit
         powerline
         projectile
+        py-autopep8
         rainbow-delimiters
         slime
         slime-company
