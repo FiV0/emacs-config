@@ -64,9 +64,6 @@
 ;; lisp indent
 (setq lisp-indent-offset nil)
 
-;; so flycheck knows about emacs packages when editing
-;; config files
-(setq-default flycheck-emacs-lisp-load-path 'inherit)
 
 ;; evil mode
 (setq evil-want-C-u-scroll t) ;important to appear before the requrie
@@ -134,7 +131,12 @@
 (add-to-list 'evil-surround-operator-alist
              '(evil-paredit-delete . delete))
 
+;; flycheck
 (global-flycheck-mode)
+;; so flycheck knows about emacs packages when editing
+;; config files
+(setq-default flycheck-emacs-lisp-load-path 'inherit)
+
 
 (require 'company)
 ;; enable company globally
@@ -142,7 +144,7 @@
 ;; use tab to cycle completions and immediately enter them
 ;; into the buffer
 (global-set-key "\t" 'company-complete-common-or-cycle)
-(company-tng-configure-default)
+(company-tng-mode)
 
 ;; start completions immediately
 (setq company-idle-delay 0)
