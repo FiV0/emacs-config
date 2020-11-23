@@ -70,6 +70,8 @@
 (add-hook 'lisp-mode-hook             'flyspell-prog-mode)
 (add-hook 'lisp-interaction-mode-hook 'flyspell-prog-mode)
 (add-hook 'scheme-mode-hook           'flyspell-prog-mode)
+;; so strings are not spellchecked in prog-mod
+(setq flyspell-prog-text-faces (delq 'font-lock-string-face flyspell-prog-text-faces))
 
 (setq flyspell-issue-message-flag nil)
 
