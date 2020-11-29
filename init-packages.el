@@ -23,10 +23,11 @@
         cider
         cider-eval-sexp-fu
         company
-        company-jedi
+        ;; company-jedi
         company-lsp
         company-quickhelp
         dash
+        elpy
         eval-sexp-fu
         evil
         evil-leader
