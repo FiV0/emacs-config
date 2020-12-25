@@ -78,6 +78,8 @@
 ;; lisp indent
 (setq lisp-indent-offset nil)
 
+;; undo tree
+(global-undo-tree-mode)
 
 ;; evil mode
 (setq evil-want-C-u-scroll t) ;important to appear before the requrie
@@ -87,11 +89,11 @@
 (evil-mode 1)
 ;; make normal mode the default
 (setq evil-emacs-state-modes nil)
+(evil-set-undo-system 'undo-tree)
 
 ;;magit
 (require 'evil-magit)
 (setq magit-save-repository-buffers 'dontask)
-
 
 ;; projectile
 (require 'projectile)

@@ -48,6 +48,7 @@
         rainbow-delimiters
         slime
         slime-company
+        undo-tree
         use-package))
 
 
