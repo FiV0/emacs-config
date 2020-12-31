@@ -46,6 +46,7 @@
         powerline
         projectile
         rainbow-delimiters
+        smartparens
         slime
         slime-company
         undo-tree

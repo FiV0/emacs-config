@@ -63,13 +63,13 @@
 
 ;; spellchecking
 (require 'flyspell)
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'emacs-lisp-mode-hook       'flyspell-prog-mode)
+(add-hook 'text-mode-hook                        'flyspell-mode)
+(add-hook 'emacs-lisp-mode-hook                  'flyspell-prog-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook 'flyspell-prog-mode)
-(add-hook 'ielm-mode-hook             'flyspell-prog-mode)
-(add-hook 'lisp-mode-hook             'flyspell-prog-mode)
-(add-hook 'lisp-interaction-mode-hook 'flyspell-prog-mode)
-(add-hook 'scheme-mode-hook           'flyspell-prog-mode)
+(add-hook 'ielm-mode-hook                        'flyspell-prog-mode)
+(add-hook 'lisp-mode-hook                        'flyspell-prog-mode)
+(add-hook 'lisp-interaction-mode-hook            'flyspell-prog-mode)
+(add-hook 'scheme-mode-hook                      'flyspell-prog-mode)
 ;; so strings are not spellchecked in prog-mod
 (setq flyspell-prog-text-faces (delq 'font-lock-string-face flyspell-prog-text-faces))
 
@@ -190,32 +190,43 @@
 (add-to-list 'aggressive-indent-excluded-modes
              'elisp-mode)
 
+;; smartparens
+(require 'smartparens-config)
+(global-set-key (kbd "M-w") 'sp-forward-slurp-sexp)
+(global-set-key (kbd "M-b") 'sp-forward-barf-sexp)
+(add-hook 'emacs-lisp-mode-hook                  #'smartparens-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'smartparens-mode)
+(add-hook 'ielm-mode-hook                        #'smartparens-mode)
+(add-hook 'lisp-mode-hook                        #'smartparens-mode)
+(add-hook 'lisp-interaction-mode-hook            #'smartparens-mode)
+(add-hook 'scheme-mode-hook                      #'smartparens-mode)
+
 ;; TODO if scheme gets its own file move the hooks over there
 
 ;; paredit hooks
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook                  #'enable-paredit-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook                        #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook                        #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
 
 ;; lispyville for balancing parentheses and quotes
-(add-hook 'emacs-lisp-mode-hook       #'lispyville-mode)
+(add-hook 'emacs-lisp-mode-hook                  #'lispyville-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'lispyville-mode)
-(add-hook 'ielm-mode-hook             #'lispyville-mode)
-(add-hook 'lisp-mode-hook             #'lispyville-mode)
-(add-hook 'lisp-interaction-mode-hook #'lispyville-mode)
-(add-hook 'scheme-mode-hook           #'lispyville-mode)
+(add-hook 'ielm-mode-hook                        #'lispyville-mode)
+(add-hook 'lisp-mode-hook                        #'lispyville-mode)
+(add-hook 'lisp-interaction-mode-hook            #'lispyville-mode)
+(add-hook 'scheme-mode-hook                      #'lispyville-mode)
 
 ;; rainbow parentheses
-(add-hook 'emacs-lisp-mode-hook       #'rainbow-delimiters-mode)
+(add-hook 'emacs-lisp-mode-hook                  #'rainbow-delimiters-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'rainbow-delimiters-mode)
-(add-hook 'ielm-mode-hook             #'rainbow-delimiters-mode)
-(add-hook 'lisp-mode-hook             #'rainbow-delimiters-mode)
-(add-hook 'lisp-interaction-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'scheme-mode-hook           #'rainbow-delimiters-mode)
+(add-hook 'ielm-mode-hook                        #'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook                        #'rainbow-delimiters-mode)
+(add-hook 'lisp-interaction-mode-hook            #'rainbow-delimiters-mode)
+(add-hook 'scheme-mode-hook                      #'rainbow-delimiters-mode)
 
 ;; new empty buffer without prompting for a name
 (defun new-empty-buffer ()

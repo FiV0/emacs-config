@@ -7,6 +7,9 @@
 (setq slime-contribs '(slime-fancy slime-quicklisp slime-asdf slime-company))
 (slime-setup '(slime-fancy slime-company))
 
+;; smartparens
+(add-hook 'slime-repl-mode-hook       #'smartparens-config)
+
 ;;paredit
 (add-hook 'slime-repl-mode-hook       #'enable-paredit-mode)
 

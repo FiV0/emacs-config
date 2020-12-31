@@ -63,6 +63,10 @@
 (add-hook 'cider-mode-hook
           (lambda () (setq next-error-function #'flycheck-next-error-function)))
 
+;; smartparens
+(add-hook 'clojure-mode-hook          #'smartparens-mode)
+(add-hook 'cider-repl-mode-hook       #'smartparens-mode)
+
 ;; paredit
 (add-hook 'clojure-mode-hook          #'enable-paredit-mode)
 (add-hook 'cider-repl-mode-hook       #'enable-paredit-mode)
