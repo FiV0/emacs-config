@@ -39,6 +39,8 @@
   (define-key cider-mode-map (kbd "C-c C-y") #'cider-debug-defun-at-point)
   ;; custom pprint to buffer command
   (define-key cider-mode-map (kbd "C-c C-p") #'cider-pprint-eval-last-sexp-to-comment)
+  ;; overrides some other cider keybinding
+  (define-key cider-mode-map (kbd "C-c C-e") #'cider-pprint-eval-last-sexp)
 
   (evil-leader/set-key
     "cb" 'cider-repl-clear-buffer
