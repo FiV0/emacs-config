@@ -104,6 +104,8 @@
 
 (require 'helm-projectile)
 (helm-projectile-on)
+;; resuming helm session
+(global-set-key (kbd "s-r") 'helm-resume)
 
 ;; ido
 (require 'ido)
