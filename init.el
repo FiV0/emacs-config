@@ -156,6 +156,7 @@
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
 
 ;; java
+;; (require 'lsp-mode)
 (require 'lsp-java)
 (add-hook 'java-mode-hook #'lsp)
 (setq lsp-java-java-path "/home/fv/.bin/graalvm-ce-java11-21.0.0/bin/java")
@@ -170,7 +171,7 @@
 
 (require 'lsp-ui)
 (setq lsp-ui-doc-enable t)
-(setq lsp-ui-sideline-enable nil)
+(setq lsp-ui-sideline-actions-icon nil)
 (setq lsp-enable-indentation nil)
 
 (require 'company)

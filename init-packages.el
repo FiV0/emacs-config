@@ -42,6 +42,7 @@
         lispyville
         lsp-java
         lsp-mode
+        lsp-ui
         magit
         markdown-mode
         paredit
