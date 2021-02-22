@@ -26,6 +26,7 @@
         company-lsp
         company-quickhelp
         dash
+        dap-mode
         eval-sexp-fu
         evil
         evil-leader
@@ -39,7 +40,9 @@
         highlight-parentheses
         ido-completing-read+
         lispyville
+        lsp-java
         lsp-mode
+        lsp-ui
         magit
         markdown-mode
         paredit

@@ -155,6 +155,24 @@
 ;; config files
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
 
+;; java
+;; (require 'lsp-mode)
+(require 'lsp-java)
+(add-hook 'java-mode-hook #'lsp)
+(setq lsp-java-java-path "/home/fv/.bin/graalvm-ce-java11-21.0.0/bin/java")
+
+(require 'dap-mode)
+;; (dap-auto-configure-mode)
+(with-eval-after-load 'dap-mode
+  (defun dap-go-to-output-buffer (&optional no-select)
+    "Go to output buffer."
+    (interactive)
+    (display-buffer (dap--debug-session-output-buffer (dap--cur-session-or-die)))))
+
+(require 'lsp-ui)
+(setq lsp-ui-doc-enable t)
+(setq lsp-ui-sideline-actions-icon nil)
+(setq lsp-enable-indentation nil)
 
 (require 'company)
 ;; enable company globally
@@ -202,6 +220,7 @@
 (add-hook 'lisp-mode-hook                        #'smartparens-mode)
 (add-hook 'lisp-interaction-mode-hook            #'smartparens-mode)
 (add-hook 'scheme-mode-hook                      #'smartparens-mode)
+(add-hook 'java-mode-hook                        #'smartparens-mode)
 
 ;; TODO if scheme gets its own file move the hooks over there
 
