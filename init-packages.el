@@ -45,6 +45,7 @@
         lsp-ui
         magit
         markdown-mode
+        org-roam
         paredit
         powerline
         projectile
