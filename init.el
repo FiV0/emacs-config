@@ -249,6 +249,19 @@
 (add-hook 'lisp-interaction-mode-hook            #'rainbow-delimiters-mode)
 (add-hook 'scheme-mode-hook                      #'rainbow-delimiters-mode)
 
+;; org roam
+(require 'org-roam)
+(setq org-roam-directory "~/Code/org-roam/")
+(add-hook 'after-init-hook 'org-roam-mode)
+
+(with-eval-after-load 'org-roam
+  (define-key org-roam-mode-map (kbd "C-c n l") 'org-roam)
+  (define-key org-roam-mode-map (kbd "C-c n f") 'org-roam-find-file)
+  (define-key org-roam-mode-map (kbd "C-c n g") 'org-roam-graph)
+  (define-key org-mode-map (kbd "C-c n i") 'org-roam-insert)
+  (define-key org-mode-map (kbd "C-c n I") 'org-roam-insert-immediate)
+  (setq org-return-follows-link t))
+
 ;; new empty buffer without prompting for a name
 (defun new-empty-buffer ()
   "Create a new empty buffer.
