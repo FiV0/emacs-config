@@ -259,6 +259,7 @@
 (require 'org-roam)
 (setq org-roam-directory "~/Code/org-roam/")
 (add-hook 'after-init-hook 'org-roam-mode)
+(setq org-roam-v2-ack t)
 
 (with-eval-after-load 'org-roam
   (define-key org-roam-mode-map (kbd "C-c n l") 'org-roam)
