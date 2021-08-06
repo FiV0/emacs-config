@@ -83,7 +83,10 @@
 
 ;; evil mode
 (setq evil-want-C-u-scroll t) ;important to appear before the requrie
+(setq evil-want-keybinding nil)
 (require 'evil)
+(when (require 'evil-collection nil t)
+  (evil-collection-init))
 ;;allow tabs in evil mode
 (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 (evil-mode 1)
@@ -91,8 +94,7 @@
 (setq evil-emacs-state-modes nil)
 (evil-set-undo-system 'undo-tree)
 
-;;magit
-(require 'evil-magit)
+;;magit is transitive dependency via evil-collection
 (setq magit-save-repository-buffers 'dontask)
 
 ;; projectile
@@ -259,7 +261,7 @@
 (setq org-roam-v2-ack t)
 (require 'org-roam)
 (setq org-roam-directory "~/Code/org-roam/")
-(add-hook 'after-init-hook 'org-roam-mode)
+;; (add-hook 'after-init-hook 'org-roam-mode)
 (org-roam-setup)
 
 (with-eval-after-load 'org-roam

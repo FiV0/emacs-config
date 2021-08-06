@@ -1,6 +1,15 @@
+.cache/
+.dap-breakpoints
+.lsp-session*
+.org-id-locations
+.python-environments
+eclipse.jdt.ls/
+workspace/
+org-roam.db
 auto-save-list/**
 elpa/**
 transient/**
 projectile-bookmarks.eld
 ido.last
 projectile.cache
+elpy/

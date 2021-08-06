@@ -23,14 +23,13 @@
         cider
         cider-eval-sexp-fu
         company
-        company-lsp
         company-quickhelp
         dash
         dap-mode
         eval-sexp-fu
         evil
+        evil-collection
         evil-leader
-        evil-magit
         evil-nerd-commenter
         evil-surround
         expand-region
