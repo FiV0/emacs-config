@@ -261,7 +261,7 @@
 (setq org-roam-v2-ack t)
 (require 'org-roam)
 (setq org-roam-directory "~/Code/org-roam/")
-(org-roam-setup)
+;; (org-roam-setup)
 
 (with-eval-after-load 'org-roam
   (define-key org-mode-map (kbd "C-c n l") 'org-roam-buffer-toggle)
