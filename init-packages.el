@@ -34,7 +34,9 @@
         evil-leader
         evil-nerd-commenter
         evil-surround
+        exec-path-from-shell
         expand-region
+        flycheck
         flycheck-clj-kondo
         free-keys
         gnu-elpa-keyring-update
@@ -57,6 +59,7 @@
         powerline
         projectile
         rainbow-delimiters
+        rustic
         smartparens
         slime
         slime-company

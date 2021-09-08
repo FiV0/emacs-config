@@ -378,6 +378,7 @@ Called via the `after-load-functions' special hook."
 ;; the evil settings as it otherwise messes up
 ;; the C-u binding
 (load (add-user-dir-path "custom-clj.el")) ; clojure
+(load (add-user-dir-path "custom-rust.el")) ; rust
 ;; awesome is a local package
 (add-to-list 'load-path (add-user-dir-path "awesome-tab/"))
 (load (add-user-dir-path "custom-awesome-tab.el")) ; awesome-tab
