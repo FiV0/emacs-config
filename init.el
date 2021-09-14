@@ -194,8 +194,10 @@
 ;; javascript
 (setq js-indent-level 2)
 
+(require 'lsp-mode)
+(setq lsp-headerline-breadcrumb-enable nil)
+
 ;; java
-;; (require 'lsp-mode)
 ;; (require 'lsp-java)
 ;; (add-hook 'java-mode-hook #'lsp)
 ;; (setq lsp-java-java-path (replace-regexp-in-string "\n$" "" (shell-command-to-string "which java")))
