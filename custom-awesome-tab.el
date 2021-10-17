@@ -12,7 +12,7 @@
                                      "*GNU Emacs*"
                                      "*inferior-lisp*"
                                      "*slime-events*"))
-(setq awesome-tab-height 120)
+(setq awesome-tab-height 150)
 (setq awesome-tab-dark-unselected-blend 0.7)
 (setq awesome-tab-dark-active-bar-color "#F62459")
 (setq awesome-tab-active-bar-width 5)
