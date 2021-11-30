@@ -24,6 +24,7 @@
         cider-eval-sexp-fu
         company
         company-quickhelp
+        company-terraform
         dash
         dap-mode
         eval-sexp-fu
@@ -51,6 +52,7 @@
         smartparens
         slime
         slime-company
+        terraform-mode
         undo-tree
         use-package))
 
