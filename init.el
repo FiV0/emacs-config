@@ -25,6 +25,10 @@
 ;; always show linenumbers
 (global-display-line-numbers-mode t)
 
+;; disable scroll bar and tool-bar
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+
 ;; always show matching pairs of characters
 (show-paren-mode t)
 
