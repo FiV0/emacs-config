@@ -45,6 +45,7 @@
         lsp-ui
         magit
         markdown-mode
+        monokai-theme
         paredit
         powerline
         projectile

@@ -15,9 +15,7 @@
 ;;; General emacs stuff
 
 ;; custom themes
-(add-to-list 'custom-theme-load-path (add-user-dir-path "themes/"))
-(setq custom-enabled-themes '(monokai))
-(load-theme 'monokai)
+(load-theme 'monokai t)
 
 ;; maximize window when opening emacs
 (setq initial-frame-alist '((fullscreen . maximized)))
