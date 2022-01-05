@@ -15,8 +15,7 @@
                                       "*slime-events*"))
 
 (setq centaur-tabs-style "bar")
-(setq centaur-tabs-height 150)
-;; (setq centaur-tabs-set-icons t)
+;; (setq centaur-tabs-show-count t)
 ;; (setq centaur-tabs-gray-out-icons 'buffer)
 (setq centaur-tabs-set-bar 'left)
 (setq centaur-tabs-cycle-scope 'tabs)
