@@ -35,7 +35,7 @@
 (require 'evil)
 (defun my-cider-mode-override ()
   ;; overwrite evil
-  (define-key evil-normal-state-map (kbd "M-.") nil)
+  (define-key evil-normal-state-map (kbd "M-.") #'cider-find-var)
   ;; custom debug command
   (define-key cider-mode-map (kbd "C-c C-y") #'cider-debug-defun-at-point)
   ;; custom pprint to buffer command
