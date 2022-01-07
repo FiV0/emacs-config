@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+;; when developing centaur-tabs
+;; (add-to-list 'load-path "~/src/github.com/FiV0/centaur-tabs/")
+
 (require 'centaur-tabs)
 
 (centaur-tabs-mode t)
@@ -19,10 +22,8 @@
 ;; (setq centaur-tabs-gray-out-icons 'buffer)
 (setq centaur-tabs-set-bar 'left)
 (setq centaur-tabs-cycle-scope 'tabs)
-;; (setq awesome-tab-dark-unselected-blend 0.7)
-;; (setq awesome-tab-dark-active-bar-color "#F62459")
-;; (setq awesome-tab-active-bar-width 5)
-;; (setq awesome-tab-show-tab-index t)
+(setq centaur-tabs-show-tab-index t)
+(setq centaur-tabs-set-close-button nil)
 
 (global-set-key (kbd "s-1") 'centaur-tabs-select-visible-tab)
 (global-set-key (kbd "s-2") 'centaur-tabs-select-visible-tab)
