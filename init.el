@@ -106,6 +106,11 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (setq projectile-indexing-method 'hybrid) ;; indexes non tracked files
 
+;; to disable weird helm completion error
+;; see non defined function here
+;; https://github.com/emacs-helm/helm/blob/72c61b2d0cb3cd48fb1b24d7708ad1794eeeb10c/helm.el#L4359
+(require 'helm-mode)
+
 (require 'helm-projectile)
 (helm-projectile-on)
 ;; resuming helm session
