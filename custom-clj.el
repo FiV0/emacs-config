@@ -35,13 +35,15 @@
 (require 'evil)
 (defun my-cider-mode-override ()
   ;; overwrite evil
-  (define-key evil-normal-state-map (kbd "M-.") #'cider-find-var)
+  (define-key evil-normal-state-map (kbd "M-.") nil)
   ;; custom debug command
   (define-key cider-mode-map (kbd "C-c C-y") #'cider-debug-defun-at-point)
   ;; custom pprint to buffer command
   (define-key cider-mode-map (kbd "C-c C-p") #'cider-pprint-eval-last-sexp-to-comment)
   ;; overrides some other cider keybinding
   (define-key cider-mode-map (kbd "C-c C-e") #'cider-pprint-eval-last-sexp)
+  ;;
+  (define-key cider-mode-map (kbd "M-.") #'cider-find-var)
 
   (evil-leader/set-key
     "cb" 'cider-repl-clear-buffer
@@ -126,11 +128,8 @@
                                                                                           cljr-suppress-middleware-warnings t)
                                                                               (rename-buffer "*babashka-repl*")))))))))
          (port-filter (lambda (serv-buf)
-                        (print (boundp serv-buf))
                         (lambda (process output)
-                          (print (boundp serv-buf))
                           (when (buffer-live-p serv-buf)
-                            (print (boundp serv-buf))
                             (with-current-buffer serv-buf
                               (insert output)
                               (when (string-match "Started nREPL server at 127.0.0.1:\\([0-9]+\\)" output)
@@ -147,7 +146,6 @@
     (with-current-buffer serv-buf
       (setq nrepl-is-server t
             nrepl-server-command cmd))
-    (print (boundp serv-buf))
     (let ((serv-proc (start-file-process-shell-command "babashka-nrepl-server" serv-buf cmd)))
       (set-process-query-on-exit-flag serv-proc nil)
       (set-process-filter serv-proc (funcall port-filter serv-buf))
