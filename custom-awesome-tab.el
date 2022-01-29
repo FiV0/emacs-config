@@ -50,7 +50,8 @@ Other buffer group by `awesome-tab-get-group-name' with project name."
             "emacs")
            ((eq major-mode 'dired-mode)
             "dired")
-           ((string-equal "magit" (substring name 0 5))
+           ((and (>= (length name) 5)
+                 (string-equal "magit" (substring name 0 5)))
             "magit")
            (t "user")))))
 
