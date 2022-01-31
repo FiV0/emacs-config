@@ -223,6 +223,15 @@
 (require 'company-terraform)
 (company-terraform-init)
 
+;; yaml
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+;; polymode
+(require 'polymode)
+(require 'poly-ansible-mode)
+(add-to-list 'auto-mode-alist '(".*\\.ya?ml\.j2\\'" . poly-ansible-mode))
+
 ;; aggressive indent
 (require 'aggressive-indent)
 (global-aggressive-indent-mode 1)
