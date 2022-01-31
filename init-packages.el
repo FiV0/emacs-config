@@ -47,6 +47,7 @@
         markdown-mode
         monokai-theme
         paredit
+        poly-ansible
         powerline
         projectile
         rainbow-delimiters
@@ -55,7 +56,8 @@
         slime-company
         terraform-mode
         undo-tree
-        use-package))
+        use-package
+        yaml-mode))
 
 
 ;; install the missing packages
