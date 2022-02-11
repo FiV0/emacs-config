@@ -229,7 +229,7 @@
 
 ;; polymode
 (require 'polymode)
-(require 'poly-ansible-mode)
+(require 'poly-ansible)
 (add-to-list 'auto-mode-alist '(".*\\.ya?ml\.j2\\'" . poly-ansible-mode))
 
 ;; aggressive indent
