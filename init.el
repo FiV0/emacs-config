@@ -126,8 +126,8 @@
 (ido-ubiquitous-mode 1)
 
 ;; ace-jump-mode
-(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
-(define-key evil-normal-state-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+(define-key evil-normal-state-map (kbd "SPC") 'avy-goto-word-or-subword-1)
+(define-key evil-normal-state-map (kbd "C-x SPC") 'avy-pop-mark)
 
 ;; expand-region
 (global-set-key (kbd "s-e") 'er/expand-region)

@@ -16,8 +16,8 @@
 
 ;; list the packages you want
 (setq package-list
-      '(ace-jump-mode
-        aggressive-indent
+      '(aggressive-indent
+        avy
         bind-key
         camcorder
         cider
