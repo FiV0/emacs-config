@@ -297,15 +297,15 @@ Version 2017-11-01"
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "M-<down>") 'kill-this-buffer) ;; this overrides some paredit binding
     (define-key map (kbd "M-<up>") 'new-empty-buffer)
-    (define-key map (kbd "<M-left>") 'awesome-tab-backward-tab)
-    (define-key map (kbd "<M-right>") 'awesome-tab-forward-tab)
-    (define-key map (kbd "M-h") 'awesome-tab-backward-group)
-    (define-key map (kbd "M-l") 'awesome-tab-forward-group)
+    (define-key map (kbd "<M-left>") 'centaur-tabs-backward-tab)
+    (define-key map (kbd "<M-right>") 'centaur-tabs-forward-tab)
+    (define-key map (kbd "M-h") 'centaur-tabs-backward-group)
+    (define-key map (kbd "M-l") 'centaur-tabs-forward-group)
     ;; this is is better to use when not on keyboard.io
-    (define-key map (kbd "M-s-<left>") 'awesome-tab-backward-group)
-    (define-key map (kbd "M-s-<right>") 'awesome-tab-forward-group)
-    (define-key map (kbd "C-<left>") 'awesome-tab-move-current-tab-left)
-    (define-key map (kbd "C-<right>") 'awesome-tab-move-current-tab-to-right)
+    (define-key map (kbd "M-s-<left>") 'centaur-tabs-backward-group)
+    (define-key map (kbd "M-s-<right>") 'centaur-tabs-forward-group)
+    (define-key map (kbd "C-<left>") 'centaur-tabs-move-current-tab-left)
+    (define-key map (kbd "C-<right>") 'centaur-tabs-move-current-tab-to-right)
     map)
   "My-keys-minor-mode keymap.")
 
@@ -340,4 +340,4 @@ Called via the `after-load-functions' special hook."
 (load (add-user-dir-path "custom-clj.el")) ; clojure
 ;; awesome is a local package
 (add-to-list 'load-path (add-user-dir-path "awesome-tab/"))
-(load (add-user-dir-path "custom-awesome-tab.el")) ; awesome-tab
+(load (add-user-dir-path "custom-centaur-tabs.el")) ; centaur-tabs

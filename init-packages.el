@@ -20,6 +20,7 @@
         avy
         bind-key
         camcorder
+        centaur-tabs
         cider
         cider-eval-sexp-fu
         company
