@@ -35,6 +35,7 @@
         evil-surround
         expand-region
         flycheck-clj-kondo
+        groovy-mode
         helm-ag
         helm-projectile
         highlight-parentheses
@@ -58,7 +59,6 @@
         undo-tree
         use-package
         yaml-mode))
-
 
 ;; install the missing packages
 (dolist (package package-list)
