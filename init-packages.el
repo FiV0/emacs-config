@@ -5,6 +5,13 @@
 
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+
+(setq package-archive-priorities
+      '(("melpa-stable" . 10)
+        ("melpa"        . 5)
+        ("gnu"          . 0)))
 
 ;; activate all the packages
 (package-initialize)
@@ -13,6 +20,8 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+
 
 ;; list the packages you want
 (setq package-list
@@ -20,7 +29,7 @@
         avy
         bind-key
         camcorder
-        cider
+        ;; cider
         cider-eval-sexp-fu
         company
         company-quickhelp
