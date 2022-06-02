@@ -165,6 +165,9 @@
 ;; config files
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
 
+;; javascript
+(setq js-indent-level 2)
+
 ;; java
 ;; (require 'lsp-mode)
 (require 'lsp-java)
