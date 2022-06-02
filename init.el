@@ -82,6 +82,7 @@
 
 ;; undo tree
 (global-undo-tree-mode)
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 ;; evil mode
 (setq evil-want-C-u-scroll t) ;important to appear before the requrie
