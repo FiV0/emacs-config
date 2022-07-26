@@ -165,6 +165,12 @@
 ;; config files
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
 
+;; yasnippet
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/src/github.com/FiV0/emacs-config/snippets")) ;; personal snippets
+(yas-global-mode 1)
+
 ;; javascript
 (setq js-indent-level 2)
 

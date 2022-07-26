@@ -58,7 +58,8 @@
         terraform-mode
         undo-tree
         use-package
-        yaml-mode))
+        yaml-mode
+        yasnippet))
 
 ;; install the missing packages
 (dolist (package package-list)
