@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: hugecomment
-# binding: , c e
+# binding: C-c c h
 # key: hc
 # --
 ;;///////////////////////////////////////////////////////////////////////////////
