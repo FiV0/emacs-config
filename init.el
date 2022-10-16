@@ -80,10 +80,6 @@
 ;; lisp indent
 (setq lisp-indent-offset nil)
 
-;; undo tree
-(global-undo-tree-mode)
-(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
-
 ;; evil mode
 (setq evil-want-C-u-scroll t) ;important to appear before the requrie
 (setq evil-want-keybinding nil)
@@ -95,7 +91,6 @@
 (evil-mode 1)
 ;; make normal mode the default
 (setq evil-emacs-state-modes nil)
-(evil-set-undo-system 'undo-tree)
 
 ;;magit is transitive dependency via evil-collection
 (setq magit-save-repository-buffers 'dontask)

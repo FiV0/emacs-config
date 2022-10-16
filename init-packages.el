@@ -56,7 +56,6 @@
         slime
         slime-company
         terraform-mode
-        undo-tree
         use-package
         yaml-mode
         yasnippet))
