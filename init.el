@@ -91,6 +91,7 @@
 (evil-mode 1)
 ;; make normal mode the default
 (setq evil-emacs-state-modes nil)
+(evil-set-undo-system 'undo-redo)
 
 ;;magit is transitive dependency via evil-collection
 (setq magit-save-repository-buffers 'dontask)
