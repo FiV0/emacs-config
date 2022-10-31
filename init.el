@@ -175,7 +175,7 @@
 ;; (require 'lsp-mode)
 (require 'lsp-java)
 (add-hook 'java-mode-hook #'lsp)
-(setq lsp-java-java-path "/home/fv/.bin/graalvm-ce-java11-21.1.0/bin/java")
+(setq lsp-java-java-path (replace-regexp-in-string "\n$" "" (shell-command-to-string "which java")))
 ;; (setq lsp-java-configuration-runtimes '[(:name "JavaSE-1.8"
 ;;                                                :path "/usr/lib/jvm/java-8-openjdk-amd64"
 ;;                                                :default t)])
