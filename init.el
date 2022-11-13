@@ -212,10 +212,8 @@
       ;; XXX the order is important here
       '(company-slime
         company-bbdb
-        company-eclim
         company-semantic
         company-clang
-        company-xcode
         company-cmake
         company-capf
         company-files
