@@ -64,6 +64,7 @@
         slime
         slime-company
         terraform-mode
+        toml-mode
         use-package
         which-key
         yaml-mode
