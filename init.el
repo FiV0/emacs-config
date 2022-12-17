@@ -165,7 +165,7 @@
 ;; yasnippet
 (require 'yasnippet)
 (setq yas-snippet-dirs
-      '("~/src/github.com/FiV0/emacs-config/snippets")) ;; personal snippets
+      (list (expand-file-name "snippets" user-emacs-directory))) ;; personal snippets
 (yas-global-mode 1)
 
 ;; javascript
