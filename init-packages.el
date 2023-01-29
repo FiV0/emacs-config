@@ -22,6 +22,7 @@
         camcorder
         cider
         cider-eval-sexp-fu
+        clj-refactor
         company
         company-quickhelp
         company-terraform
