@@ -224,6 +224,9 @@
 ;; free-keys
 (bind-key "C-h C-k" 'free-keys)
 
+;; imenu
+(bind-key "C-c i" 'imenu)
+
 ;; company quickhelp
 (company-quickhelp-mode)
 
