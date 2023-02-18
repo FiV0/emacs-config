@@ -36,6 +36,7 @@
         evil-surround
         expand-region
         flycheck-clj-kondo
+        free-keys
         gnu-elpa-keyring-update
         groovy-mode
         helm-ag

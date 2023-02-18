@@ -221,6 +221,9 @@
         company-oddmuse
         company-dabbrev))
 
+;; free-keys
+(bind-key "C-h C-k" 'free-keys)
+
 ;; company quickhelp
 (company-quickhelp-mode)
 
