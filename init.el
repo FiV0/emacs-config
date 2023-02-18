@@ -202,6 +202,7 @@
 ;; use tab to cycle completions and immediately enter them
 ;; into the buffer
 (global-set-key "\t" 'company-complete-common-or-cycle)
+(setq company-minimum-prefix-length 2)
 (company-tng-mode)
 
 ;; start completions immediately

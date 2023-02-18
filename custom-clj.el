@@ -99,6 +99,20 @@
 
 (require 'cider-eval-sexp-fu)
 
+;; clojure lsp
+(add-hook 'clojure-mode-hook 'lsp)
+(add-hook 'clojurescript-mode-hook 'lsp)
+(add-hook 'clojurec-mode-hook 'lsp)
+
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024)
+      treemacs-space-between-root-nodes nil
+      lsp-headerline-breadcrumb-enable nil
+      ;; lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
+      ;; lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
+      )
+
+
 ;; babashka
 (defun babashka-quit ()
   (interactive)
