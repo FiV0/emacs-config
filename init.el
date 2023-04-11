@@ -173,9 +173,9 @@
 
 ;; java
 ;; (require 'lsp-mode)
-(require 'lsp-java)
-(add-hook 'java-mode-hook #'lsp)
-(setq lsp-java-java-path (replace-regexp-in-string "\n$" "" (shell-command-to-string "which java")))
+;; (require 'lsp-java)
+;; (add-hook 'java-mode-hook #'lsp)
+;; (setq lsp-java-java-path (replace-regexp-in-string "\n$" "" (shell-command-to-string "which java")))
 ;; (setq lsp-java-configuration-runtimes '[(:name "JavaSE-1.8"
 ;;                                                :path "/usr/lib/jvm/java-8-openjdk-amd64"
 ;;                                                :default t)])
