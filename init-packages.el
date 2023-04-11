@@ -43,6 +43,7 @@
         helm-projectile
         highlight-parentheses
         ido-completing-read+
+        kotlin-mode
         lispyville
         lsp-java
         lsp-mode
