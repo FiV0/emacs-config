@@ -109,7 +109,7 @@
       treemacs-space-between-root-nodes nil
       lsp-headerline-breadcrumb-enable nil
       ;; lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
-      ;; lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
+      lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
       )
 
 
