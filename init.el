@@ -96,6 +96,8 @@
 ;;magit is transitive dependency via evil-collection
 (setq magit-save-repository-buffers 'dontask)
 
+(global-set-key (kbd "M-o") 'occur)
+
 ;; projectile
 (require 'projectile)
 (projectile-mode +1)
