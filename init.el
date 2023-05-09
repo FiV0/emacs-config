@@ -111,6 +111,7 @@
 (require 'helm-mode)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
+;; (setq helm-projectile-fuzzy-match nil)
 (require 'helm-projectile)
 (helm-projectile-on)
 ;; resuming helm session
