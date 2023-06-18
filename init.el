@@ -63,6 +63,8 @@
 ;; tabs as spaces
 (progn (setq-default indent-tabs-mode nil))
 
+(require 'adoc-mode)
+
 ;; spellchecking
 (require 'flyspell)
 (add-hook 'text-mode-hook                        'flyspell-mode)

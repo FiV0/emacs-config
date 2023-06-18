@@ -16,7 +16,8 @@
 
 ;; list the packages you want
 (setq package-list
-      '(aggressive-indent
+      '(adoc-mode
+        aggressive-indent
         avy
         bind-key
         camcorder
