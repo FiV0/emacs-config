@@ -233,6 +233,9 @@
 ;; imenu
 (bind-key "C-c i" 'imenu)
 
+;; univeral-argument
+(bind-key "M-u" 'universal-argument)
+
 ;; company quickhelp
 (company-quickhelp-mode)
 
