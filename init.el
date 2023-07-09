@@ -183,6 +183,10 @@
         ("HACK"   . "#FF0000")
         ("DEBUG"  . "#A020F0")))
 
+;; which-key
+(setq which-key-idle-delay 0.5)
+(which-key-mode)
+
 ;; javascript
 (setq js-indent-level 2)
 
