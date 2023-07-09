@@ -202,6 +202,7 @@
 (setq lsp-ui-doc-enable t)
 (setq lsp-ui-sideline-actions-icon nil)
 (setq lsp-enable-indentation nil)
+(setq lsp-enable-file-watchers t)
 
 (require 'company)
 ;; enable company globally
