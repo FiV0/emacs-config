@@ -175,6 +175,14 @@
       (list (expand-file-name "snippets" user-emacs-directory))) ;; personal snippets
 (yas-global-mode 1)
 
+;; hl-todo
+(global-hl-todo-mode)
+(setq hl-todo-keyword-faces
+      '(("TODO"   . "#FF0000")
+        ("FIXME"  . "#FF0000")
+        ("HACK"   . "#FF0000")
+        ("DEBUG"  . "#A020F0")))
+
 ;; javascript
 (setq js-indent-level 2)
 

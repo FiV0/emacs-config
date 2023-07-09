@@ -43,6 +43,7 @@
         helm-ag
         helm-projectile
         highlight-parentheses
+        hl-todo
         ido-completing-read+
         kotlin-mode
         lispyville
