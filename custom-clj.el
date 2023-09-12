@@ -74,7 +74,7 @@
 
 ;; paredit
 (add-hook 'clojure-mode-hook          #'enable-paredit-mode)
-(add-hook 'cider-repl-mode-hook       #'enable-paredit-mode)
+;; (add-hook 'cider-repl-mode-hook       #'enable-paredit-mode)
 
 ;; lispyville
 (add-hook 'clojure-mode-hook          #'lispyville-mode)
