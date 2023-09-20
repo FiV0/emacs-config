@@ -27,6 +27,9 @@
 ;; prevent long eval times the first time a cljs form is evaled
 (setq cider-auto-track-ns-form-changes nil)
 
+;; to make complilation errors pop up as stacktrace
+(setq cider-clojure-compilation-error-phases nil)
+
 ;; copied from lesser-evil
 (defun cider-pprint-register (register)
   (interactive (list (register-read-with-preview "Eval register: ")))
