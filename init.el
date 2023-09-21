@@ -106,6 +106,7 @@
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (setq projectile-indexing-method 'hybrid) ;; indexes non tracked files
+;;(setq projectile-indexing-method 'alien) ;; indexes non tracked files
 (setq projectile-sort-order 'recently-active)
 (setq projectile-completion-system 'helm)
 (setq projectile-enable-caching t)
