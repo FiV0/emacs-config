@@ -108,6 +108,7 @@
 (setq projectile-indexing-method 'hybrid) ;; indexes non tracked files
 (setq projectile-sort-order 'recently-active)
 (setq projectile-completion-system 'helm)
+(setq projectile-enable-caching t)
 
 ;; to disable weird helm completion error
 ;; see non defined function here
