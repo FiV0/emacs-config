@@ -217,6 +217,7 @@
 (setq lsp-ui-sideline-actions-icon nil)
 (setq lsp-enable-indentation nil)
 (setq lsp-enable-file-watchers t)
+(setq lsp-file-watch-threshold 2000)
 
 (require 'company)
 ;; enable company globally
