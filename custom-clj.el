@@ -15,6 +15,7 @@
 (setq cider-repl-history-file "~/.cider-repl-history")
 (setq cider-auto-jump-to-error 'errors-only)
 (setq cider-repl-display-help-banner nil)
+(setq cider-enrich-classpath t)
 
 (with-eval-after-load 'clojure-mode
   (define-clojure-indent
