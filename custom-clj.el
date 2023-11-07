@@ -172,7 +172,9 @@
   nil)
 
 (defun my-clojure-mode-hook ()
-  (yas-minor-mode 1))
+  (yas-minor-mode 1)
+  ;; somehow does not get loaded properly by paredit
+  (global-set-key (kbd "M-r") 'paredit-raise-sexp))
 
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 
