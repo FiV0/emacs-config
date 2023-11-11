@@ -118,7 +118,8 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
 (setq helm-split-window-default-side 'right)
-;; (setq helm-projectile-fuzzy-match nil)
+;; depending on the project set this to nil or not
+(setq helm-projectile-fuzzy-match nil)
 (require 'helm-projectile)
 (helm-projectile-on)
 ;; resuming helm session
