@@ -119,7 +119,7 @@
 
 (setq helm-split-window-default-side 'right)
 ;; depending on the project set this to nil or not
-(setq helm-projectile-fuzzy-match nil)
+(setq helm-projectile-fuzzy-match t)
 (require 'helm-projectile)
 (helm-projectile-on)
 ;; resuming helm session
@@ -316,6 +316,17 @@
 (add-hook 'lisp-mode-hook                        #'rainbow-delimiters-mode)
 (add-hook 'lisp-interaction-mode-hook            #'rainbow-delimiters-mode)
 (add-hook 'scheme-mode-hook                      #'rainbow-delimiters-mode)
+
+;; scheme
+(require 'geiser-chez)
+(setq geiser-active-implementations '(chez))
+(setq geiser-chez-binary "chez")
+;; (setq geiser-guile-binary "guile")
+(add-hook 'scheme-mode-hook
+          (lambda () (local-set-key (kbd "M-.") #'geiser-edit-symbol-at-point)))
+(add-to-list 'auto-mode-alist
+             '("\\.sls\\'" . scheme-mode)
+             '("\\.sc\\'" . scheme-mode))
 
 ;; new empty buffer without prompting for a name
 (defun new-empty-buffer ()

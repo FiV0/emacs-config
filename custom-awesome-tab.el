@@ -41,10 +41,11 @@ All buffer name start with * will group to \"Emacs\".
 Other buffer group by `awesome-tab-get-group-name' with project name."
   (list
    (let ((name (buffer-name)))
-     (cond ((and (>= (length name) 6)
+     (cond ((and (>= (length name) 7)
                  (or (string-equal "*slime" (substring name 0 6))
                      (string-equal "*cider" (substring name 0 6))
-                     (string-equal "*ielm" (substring name 0 5))))
+                     (string-equal "*ielm" (substring name 0 5))
+                     (string-equal "*Geiser" (substring name 0 7))))
             "repl")
            ((string-equal "*" (substring name 0 1))
             "emacs")

@@ -37,6 +37,8 @@
         expand-region
         flycheck-clj-kondo
         free-keys
+        geiser
+        geiser-chez
         gnu-elpa-keyring-update
         groovy-mode
         helm-ag
