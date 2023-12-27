@@ -168,7 +168,8 @@
              '(evil-paredit-delete . delete))
 
 ;; flycheck
-(global-flycheck-mode)
+(use-package flycheck :ensure)
+;; (global-flycheck-mode)
 ;; so flycheck knows about emacs packages when editing
 ;; config files
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
