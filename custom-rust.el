@@ -58,6 +58,7 @@
   :ensure
   :commands lsp-ui-mode
   :custom
+  ;; (lsp-ui-sideline-actions-icon nil)
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
@@ -74,22 +75,30 @@
 
 (use-package yasnippet
   :ensure
+  :custom
+  (yas-snippet-dirs (list (expand-file-name "snippets" user-emacs-directory))) ;; personal snippets
   :config
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'text-mode-hook 'yas-minor-mode))
 
-;; (use-package company
-;;   :ensure
-;;   :bind
-;;   (:map company-active-map
-;;         ("C-n". company-select-next)
-;;         ("C-p". company-select-previous)
-;;         ("M-<". company-select-first)
-;;         ("M->". company-select-last))
-;;   (:map company-mode-map
-;;         ("<tab>". tab-indent-or-complete)
-;;         ("TAB". tab-indent-or-complete)))
+(use-package company
+  :ensure
+  :custom
+  (company-minimum-prefix-length 1)
+  ;; (company-selection-wrap-around t)
+  (company-idle-delay 0)
+  :bind
+  (:map company-active-map
+        ("C-n". company-select-next)
+        ("C-p". company-select-previous)
+        ("M-<". company-select-first)
+        ("M->". company-select-last))
+  (:map company-mode-map
+        ("<tab>". tab-indent-or-complete)
+        ("TAB". tab-indent-or-complete))
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
 
 (defun company-yasnippet-or-completion ()
   (interactive)

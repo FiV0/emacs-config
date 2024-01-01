@@ -175,10 +175,10 @@
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
 
 ;; yasnippet
-(require 'yasnippet)
-(setq yas-snippet-dirs
-      (list (expand-file-name "snippets" user-emacs-directory))) ;; personal snippets
-(yas-global-mode 1)
+;; (require 'yasnippet)
+;; (setq yas-snippet-dirs
+;;       (list (expand-file-name "snippets" user-emacs-directory))) ;; personal snippets
+;; (yas-global-mode 1)
 
 ;; hl-todo
 (global-hl-todo-mode)
@@ -217,38 +217,38 @@
     (interactive)
     (display-buffer (dap--debug-session-output-buffer (dap--cur-session-or-die)))))
 
-(require 'lsp-ui)
-(setq lsp-ui-doc-enable t)
-(setq lsp-ui-sideline-actions-icon nil)
-(setq lsp-enable-indentation nil)
-(setq lsp-enable-file-watchers t)
-(setq lsp-file-watch-threshold 2000)
+;; (require 'lsp-ui)
+;; (setq lsp-ui-doc-enable t)
+;; (setq lsp-ui-sideline-actions-icon nil)
+;; (setq lsp-enable-indentation nil)
+;; (setq lsp-enable-file-watchers t)
+;; (setq lsp-file-watch-threshold 2000)
 
-(require 'company)
-;; enable company globally
-(add-hook 'after-init-hook 'global-company-mode)
-;; use tab to cycle completions and immediately enter them
-;; into the buffer
-(global-set-key "\t" 'company-complete-common-or-cycle)
-(setq company-minimum-prefix-length 2)
-(company-tng-mode)
+;; (require 'company)
+;; ;; enable company globally
+;; (add-hook 'after-init-hook 'global-company-mode)
+;; ;; use tab to cycle completions and immediately enter them
+;; ;; into the buffer
+;; (global-set-key "\t" 'company-complete-common-or-cycle)
+;; (setq company-minimum-prefix-length 2)
+;; (company-tng-mode)
 
-;; start completions immediately
-(setq company-idle-delay 0)
-(setq company-selection-wrap-around t)
+;; ;; start completions immediately
+;; (setq company-idle-delay 0)
+;; (setq company-selection-wrap-around t)
 
-(setq company-backends
-      ;; XXX the order is important here
-      '(company-slime
-        company-bbdb
-        company-semantic
-        company-clang
-        company-cmake
-        company-capf
-        company-files
-        (company-dabbrev-code company-gtags company-etags company-keywords)
-        company-oddmuse
-        company-dabbrev))
+;; (setq company-backends
+;;       ;; XXX the order is important here
+;;       '(company-slime
+;;         company-bbdb
+;;         company-semantic
+;;         company-clang
+;;         company-cmake
+;;         company-capf
+;;         company-files
+;;         (company-dabbrev-code company-gtags company-etags company-keywords)
+;;         company-oddmuse
+;;         company-dabbrev))
 
 ;; free-keys
 (bind-key "C-h C-k" 'free-keys)
@@ -260,11 +260,11 @@
 (bind-key "M-u" 'universal-argument)
 
 ;; company quickhelp
-(company-quickhelp-mode)
+;; (company-quickhelp-mode)
 
 ;; terraform
-(require 'company-terraform)
-(company-terraform-init)
+;; (require 'company-terraform)
+;; (company-terraform-init)
 
 ;; yaml
 (require 'yaml-mode)
@@ -376,11 +376,11 @@ Called via the `after-load-functions' special hook."
           'my-minibuffer-setup-hook)
 
 ;; custom files
-(load (add-user-dir-path "custom-cl.el")) ; common lisp
+;; (load (add-user-dir-path "custom-cl.el")) ; common lisp
 ;; it's important that this file gets loaded after
 ;; the evil settings as it otherwise messes up
 ;; the C-u binding
-(load (add-user-dir-path "custom-clj.el")) ; clojure
+;; (load (add-user-dir-path "custom-clj.el")) ; clojure
 (load (add-user-dir-path "custom-rust.el")) ; rust
 ;; awesome is a local package
 (add-to-list 'load-path (add-user-dir-path "awesome-tab/"))
