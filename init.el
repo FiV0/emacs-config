@@ -317,6 +317,27 @@
 (add-hook 'lisp-interaction-mode-hook            #'rainbow-delimiters-mode)
 (add-hook 'scheme-mode-hook                      #'rainbow-delimiters-mode)
 
+(require 'quelpa-use-package)
+
+;; copilot is not in melpa
+(use-package copilot
+  :quelpa (copilot :fetcher github
+                   :repo "copilot-emacs/copilot.el"
+                   :branch "main"
+                   :files ("*.el"))
+  :bind (("C-c M-f" . copilot-complete)
+         :map copilot-completion-map
+         ;; ("C-g" . 'copilot-clear-overlay)
+         ;; ("M-p" . 'copilot-previous-completion)
+         ;; ("M-n" . 'copilot-next-completion)
+         ("<tab>" . 'copilot-accept-completion)
+         ;; ("M-f" . 'copilot-accept-completion-by-word)
+         ;; ("M-<return>" . 'copilot-accept-completion-by-line)
+         ))
+
+(require 'copilot)
+(add-hook 'prog-mode-hook 'copilot-mode)
+
 ;; new empty buffer without prompting for a name
 (defun new-empty-buffer ()
   "Create a new empty buffer.

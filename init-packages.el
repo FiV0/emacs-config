@@ -56,6 +56,8 @@
         poly-ansible
         powerline
         projectile
+        quelpa
+        quelpa-use-package
         rainbow-delimiters
         smartparens
         slime
