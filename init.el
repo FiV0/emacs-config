@@ -333,10 +333,13 @@
          ("<tab>" . 'copilot-accept-completion)
          ;; ("M-f" . 'copilot-accept-completion-by-word)
          ;; ("M-<return>" . 'copilot-accept-completion-by-line)
-         ))
+         )
+  :config
+  (add-to-list 'copilot-indentation-alist '(prog-mode 4))
+  (add-hook 'prog-mode-hook 'copilot-mode)
+  (setq copilot-max-char 200000))
 
 (require 'copilot)
-(add-hook 'prog-mode-hook 'copilot-mode)
 
 ;; new empty buffer without prompting for a name
 (defun new-empty-buffer ()
