@@ -356,10 +356,15 @@ Version 2017-11-01"
     (setq buffer-offer-save t)
     $buf))
 
+(defun my-kill-this-buffer ()
+  "Kill the current buffer."
+  (interactive)
+  (kill-buffer (current-buffer)))
+
 ;; My preferred keys
 (defvar my-keys-minor-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "M-<down>") 'kill-this-buffer) ;; this overrides some paredit binding
+    (define-key map (kbd "M-<down>") 'my-kill-this-buffer) ;; this overrides some paredit binding
     (define-key map (kbd "M-<up>") 'new-empty-buffer)
     (define-key map (kbd "<M-left>") 'awesome-tab-backward-tab)
     (define-key map (kbd "<M-right>") 'awesome-tab-forward-tab)
