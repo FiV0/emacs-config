@@ -20,7 +20,7 @@
         aggressive-indent
         avy
         bind-key
-        camcorder
+        ;; camcorder
         cider
         cider-eval-sexp-fu
         company
@@ -66,7 +66,8 @@
         use-package
         which-key
         yaml-mode
-        yasnippet))
+        ;; yasnippet
+        ))
 
 ;; install the missing packages
 (dolist (package package-list)
