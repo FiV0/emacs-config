@@ -174,10 +174,10 @@
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
 
 ;; yasnippet
-(require 'yasnippet)
-(setq yas-snippet-dirs
-      (list (expand-file-name "snippets" user-emacs-directory))) ;; personal snippets
-(yas-global-mode 1)
+;; (require 'yasnippet)
+;; (setq yas-snippet-dirs
+;;       (list (expand-file-name "snippets" user-emacs-directory))) ;; personal snippets
+;; (yas-global-mode 1)
 
 ;; hl-todo
 (global-hl-todo-mode)
