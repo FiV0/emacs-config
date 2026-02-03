@@ -39,7 +39,6 @@
         free-keys
         gnu-elpa-keyring-update
         groovy-mode
-        helm-ag
         helm-projectile
         highlight-parentheses
         hl-todo
