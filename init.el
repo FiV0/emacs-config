@@ -31,7 +31,28 @@
 (show-paren-mode t)
 
 ;; set cursor color to red
-(set-cursor-color "#ef330e")
+(defconst my-cursor-color "#ef330e"
+  "Preferred cursor color.")
+
+(defun my-apply-cursor-color (&optional frame)
+  "Apply `my-cursor-color' to FRAME or the selected frame."
+  (let ((frame (or frame (selected-frame))))
+    (when (frame-live-p frame)
+      (set-frame-parameter frame 'cursor-color my-cursor-color)
+      (set-face-attribute 'cursor nil
+                          :background my-cursor-color
+                          :inverse-video nil))))
+
+(defun my-apply-cursor-color-later (&optional frame)
+  "Apply `my-cursor-color' now and again after frame setup settles."
+  (my-apply-cursor-color frame)
+  (run-with-idle-timer 0 nil #'my-apply-cursor-color frame))
+
+(add-to-list 'initial-frame-alist `(cursor-color . ,my-cursor-color))
+(add-to-list 'default-frame-alist `(cursor-color . ,my-cursor-color))
+(my-apply-cursor-color-later)
+(add-hook 'window-setup-hook #'my-apply-cursor-color-later)
+(add-hook 'after-make-frame-functions #'my-apply-cursor-color-later)
 
 ;; this is a customized so that the config works
 ;; on large screens as well as a laptop with
